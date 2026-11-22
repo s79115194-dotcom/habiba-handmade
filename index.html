@@ -185,7 +185,6 @@
         <p class="text-sm text-[#2d1820]/75 max-w-md mx-auto mb-6 leading-relaxed">قريباً هنلاقي هنا قطع Habiba الجديدة، وكل واحدة هتكون معمولة بحب مخصوص. تقدري كمان تطلبي تصميمك الخاص دلوقتي!</p>
         <div class="flex flex-wrap items-center justify-center gap-3">
           <button type="button" data-open-order="طلب قطعة مخصوص" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold hover:bg-[#5c2d3d] transition-colors"><span>اطلبي قطعة مخصوص دلوقتي</span><span>💬</span></button>
-          
         </div>
       </div>
       <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -373,7 +372,6 @@
           <form id="admin-identity-form" class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 space-y-4 shadow-xs">
             <h3 class="text-base font-black text-[#2d1820] pb-2 border-b border-[#4a2532]/10">إعدادات هوية الموقع وكلمة المرور</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
               <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">كلمة مرور لوحة الإدارة</label><input id="set-password" type="text" dir="ltr" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" /></div>
               <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">عنوان الواجهة الرئيسي</label><input id="set-hero-title" type="text" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
               <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">النص الفرعي للواجهة</label><input id="set-hero-sub" type="text" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
@@ -430,6 +428,7 @@
     (function () {
       'use strict';
       const STORAGE_KEY = 'habiba_handmade_studio_v3';
+      const FIREBASE_DB_URL = 'https://habiba-handmade-default-rtdb.firebaseio.com';
       const DEFAULT_STATE = {
         password: '3/4/2006',
         settings: {
@@ -446,32 +445,85 @@
         products: [],
         orders: [],
       };
-      
 
       let appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
       let activeCategoryFilter = 'ALL';
       let isAdminAuthenticated = false;
+      let syncTimer = null;
+
+      function normalizeState(parsed) {
+        if (!parsed || typeof parsed !== 'object') return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        const rawOrders = Array.isArray(parsed.orders)
+          ? parsed.orders
+          : (parsed.orders && typeof parsed.orders === 'object' ? Object.values(parsed.orders) : []);
+        const rawCategories = Array.isArray(parsed.categories)
+          ? parsed.categories
+          : (parsed.categories && typeof parsed.categories === 'object' ? Object.values(parsed.categories) : []);
+        const rawProducts = Array.isArray(parsed.products)
+          ? parsed.products
+          : (parsed.products && typeof parsed.products === 'object' ? Object.values(parsed.products) : []);
+        return {
+          password: parsed.password || DEFAULT_STATE.password,
+          settings: { ...DEFAULT_STATE.settings, ...(parsed.settings || {}) },
+          categories: rawCategories.filter(Boolean),
+          products: rawProducts.filter(Boolean),
+          orders: rawOrders.filter(Boolean),
+        };
+      }
+
+      function refreshAllViews() {
+        applySettingsToDom();
+        renderCollectionSection();
+        renderAdminOrders();
+        renderAdminCategories();
+        renderAdminProducts();
+        renderAdminStats();
+      }
 
       function loadState() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return;
-          const parsed = JSON.parse(raw);
-          if (parsed && typeof parsed === 'object') {
-            appState = {
-              password: parsed.password || DEFAULT_STATE.password,
-              settings: { ...DEFAULT_STATE.settings, ...(parsed.settings || {}) },
-              categories: Array.isArray(parsed.categories) ? parsed.categories : [],
-              products: Array.isArray(parsed.products) ? parsed.products : [],
-              orders: Array.isArray(parsed.orders) ? parsed.orders : [],
-            };
-          }
+          appState = normalizeState(JSON.parse(raw));
         } catch (err) { console.error('Error loading localStorage:', err); }
+      }
+
+      async function pushStateToFirebase() {
+        try {
+          const res = await fetch(`${FIREBASE_DB_URL}/store.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(appState),
+          });
+          if (!res.ok) throw new Error('Firebase write failed');
+        } catch (err) {
+          console.error('Firebase sync error:', err);
+        }
+      }
+
+      async function pullStateFromFirebase() {
+        try {
+          const res = await fetch(`${FIREBASE_DB_URL}/store.json`, { cache: 'no-store' });
+          if (!res.ok) return;
+          const remoteData = await res.json();
+          if (remoteData && typeof remoteData === 'object') {
+            appState = normalizeState(remoteData);
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); } catch (_) {}
+            refreshAllViews();
+            if (isAdminAuthenticated) populateIdentitySettingsForm();
+          } else {
+            await pushStateToFirebase();
+          }
+        } catch (err) {
+          console.error('Firebase pull error:', err);
+        }
       }
 
       function saveState() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); }
         catch (err) { console.error('Error saving localStorage:', err); showToast('تعذر حفظ البيانات في المتصفح (المساحة ممتلئة)'); }
+        clearTimeout(syncTimer);
+        syncTimer = setTimeout(() => { pushStateToFirebase(); }, 180);
       }
 
       function showToast(msg) {
@@ -730,7 +782,6 @@
 
       function populateIdentitySettingsForm() {
         const s = appState.settings;
-        
         document.getElementById('set-password').value = appState.password || '3/4/2006';
         document.getElementById('set-hero-title').value = s.heroTitle || '';
         document.getElementById('set-hero-sub').value = s.heroSub || '';
@@ -742,6 +793,7 @@
       }
 
       function openAdminStudio() {
+        pullStateFromFirebase();
         document.getElementById('admin-studio-overlay').classList.remove('hidden');
         if (isAdminAuthenticated) {
           document.getElementById('admin-login-card').classList.add('hidden');
@@ -783,8 +835,6 @@
           renderCollectionSection();
         });
 
-        
-
         document.body.addEventListener('click', (e) => {
           const trigger = e.target.closest('[data-open-order]');
           if (!trigger) return;
@@ -807,15 +857,6 @@
           const orderCode = 'HB-' + String(Math.floor(1000 + Math.random() * 9000));
           appState.orders.unshift({ id: 'ord_' + Date.now(), orderCode, customerName, phone, address, product, quantity, notes, status: 'جديد', createdAt: new Date().toLocaleString('ar-EG') });
           saveState(); renderAdminOrders(); renderAdminStats();
-          const waMessage = [
-            `أهلاً Habiba Handmade 🌸 طلب جديد برقم (${orderCode}):`,
-            `• الاسم: ${customerName}`,
-            `• رقم التليفون: ${phone}`,
-            `• العنوان: ${address}`,
-            `• القطعة المطلوبة: ${product} (الكمية: ${quantity})`,
-            notes ? `• تفاصيل وملاحظات: ${notes}` : '',
-          ].filter(Boolean).join('\n');
-          const waUrl = buildWhatsAppUrl(appState.settings.whatsapp, waMessage);
           document.getElementById('saved-order-code').textContent = orderCode;
           const sum = document.getElementById('order-summary'); sum.innerHTML = '';
           [['رقم الطلب', orderCode], ['الاسم', customerName], ['التليفون', phone], ['العنوان', address], ['القطعة', product + ' (×' + quantity + ')'], ['ملاحظات', notes]].forEach(([k, v]) => { if (!v) return; const d = document.createElement('div'); const b = document.createElement('b'); b.textContent = k + ': '; d.append(b, document.createTextNode(v)); sum.appendChild(d); });
@@ -872,7 +913,6 @@
           e.preventDefault();
           const newPass = document.getElementById('set-password').value.trim();
           if (newPass) appState.password = newPass;
-          
           appState.settings.heroTitle = document.getElementById('set-hero-title').value.trim() || DEFAULT_STATE.settings.heroTitle;
           appState.settings.heroSub = document.getElementById('set-hero-sub').value.trim() || DEFAULT_STATE.settings.heroSub;
           appState.settings.igHandle = document.getElementById('set-ig').value.trim() || 'habiba_hm_egy';
@@ -897,7 +937,6 @@
         document.getElementById('admin-categories-list').addEventListener('click', (e) => {
           const delBtn = e.target.closest('[data-delete-cat]');
           if (!delBtn) return;
-          
           const id = delBtn.getAttribute('data-delete-cat');
           appState.categories = appState.categories.filter((c) => c.id !== id);
           if (activeCategoryFilter === id) activeCategoryFilter = 'ALL';
@@ -995,13 +1034,9 @@
 
       loadState();
       mountExactLogos();
-      applySettingsToDom();
-      renderCollectionSection();
-      renderAdminOrders();
-      renderAdminCategories();
-      renderAdminProducts();
-      renderAdminStats();
+      refreshAllViews();
       bindEventListeners();
+      pullStateFromFirebase();
     })();
   </script>
 </body>
