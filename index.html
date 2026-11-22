@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Habiba — قطع معمولة على مهلك، عشانك</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Montserrat:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: { DEFAULT: '#fbf7f4', warm: '#f6efe9', card: '#ffffff' },
+            blush: { light: '#f9e8ec', soft: '#f3d7dc', DEFAULT: '#e8b4bc', deep: '#d99aa5' },
+            plum: { DEFAULT: '#4a2532', light: '#5c2d3d', dark: '#2d1820', footer: '#261219' },
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'Tajawal', 'sans-serif'],
+            tajawal: ['Tajawal', 'Cairo', 'sans-serif'],
+            serifEn: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sansEn: ['Montserrat', 'sans-serif'],
+            scriptEn: ['Alex Brush', 'cursive'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-family: 'Cairo', 'Tajawal', sans-serif; background-color: #fbf7f4; color: #2d1820; scroll-padding-top: env(safe-area-inset-top, 0px); }
+    body { margin: 0; overflow-x: hidden; background-color: #fbf7f4; color: #2d1820; }
+    @keyframes marqueeSlide { 0% { transform: translateX(0%); } 100% { transform: translateX(50%); } }
+    .animate-marquee-track { display: flex; width: max-content; animation: marqueeSlide 24s linear infinite; }
+    .animate-marquee-track:hover { animation-play-state: paused; }
+    @keyframes gentleFloat { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
+    .animate-gentle-float { animation: gentleFloat 5s ease-in-out infinite; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f6efe9; }
+    ::-webkit-scrollbar-thumb { background: #d99aa5; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4a2532; }
+  </style>
+</head>
+<body class="bg-[#fbf7f4] text-[#2d1820] antialiased selection:bg-[#f3d7dc] selection:text-[#4a2532]">
+
+  <template id="exact-habiba-logo-template">
+    <svg viewBox="0 0 300 300" class="w-full h-full select-none" role="img" aria-label="Habiba — Handmade by Habiba Hasan">
+      <defs>
+        <path id="habiba-bottom-arc" d="M 38,162 A 113,113 0 0,0 262,162" fill="none" />
+        <filter id="watercolor-soft" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="4.5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+      <circle cx="150" cy="150" r="144" fill="#fbf7f4" />
+      <circle cx="150" cy="150" r="118" fill="none" stroke="#9b8f98" stroke-width="1.85" />
+      <path d="M 106,138 C 122,126 142,102 162,88 C 182,74 205,72 214,88 C 222,103 203,121 182,115 C 163,109 164,86 184,78 C 202,71 218,86 213,108 C 209,125 202,138 205,152 C 208,163 216,166 225,163" fill="none" stroke="#9a9097" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+      <g filter="url(#watercolor-soft)" opacity="0.88">
+        <path d="M 18,128 C 48,123 95,122 150,123 C 205,124 252,122 282,127 L 279,134 L 285,139 L 278,145 L 284,151 L 277,157 L 281,163 C 248,167 202,166 150,166 C 98,166 52,168 19,163 L 23,157 L 16,151 L 22,145 L 15,139 L 21,134 Z" fill="#ecc1ca" />
+        <path d="M 26,133 C 90,130 210,130 274,134 L 271,155 C 210,158 90,158 26,155 Z" fill="#e7b4bf" opacity="0.55" />
+        <line x1="24" y1="138" x2="276" y2="137" stroke="#f5d5dc" stroke-width="1.4" opacity="0.75" />
+        <line x1="28" y1="152" x2="272" y2="153" stroke="#dfa3b0" stroke-width="1.2" opacity="0.45" />
+      </g>
+      <text x="146" y="156" text-anchor="middle" fill="#5c535a" font-size="47" font-family="'Alex Brush', 'Cormorant Garamond', Georgia, cursive" font-weight="400" letter-spacing="0.5">Habiba</text>
+      <g transform="translate(199, 154) rotate(-32)">
+        <line x1="-24" y1="0" x2="27" y2="0" stroke="#7d737a" stroke-width="1.65" stroke-linecap="round" />
+        <ellipse cx="22.5" cy="0" rx="3.8" ry="1.15" fill="#fbf7f4" stroke="#7d737a" stroke-width="1.15" />
+      </g>
+      <text fill="#6f656d" font-size="11.2" font-weight="600" letter-spacing="2.8" font-family="'Montserrat', sans-serif">
+        <textPath href="#habiba-bottom-arc" startOffset="50%" text-anchor="middle">HANDMADE BY HABIBA HASAN</textPath>
+      </text>
+    </svg>
+  </template>
+
+  <div id="toast-container" class="fixed bottom-5 left-5 z-[100] flex flex-col gap-2.5 max-w-xs sm:max-w-sm pointer-events-none"></div>
+
+  <header class="sticky top-0 z-40 bg-[#fbf7f4]/90 backdrop-blur-md border-b border-[#4a2532]/10" style="padding-top: env(safe-area-inset-top, 0px)">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <button id="open-drawer-btn" type="button" aria-label="فتح القائمة" class="w-10 h-10 rounded-xl bg-white border border-[#4a2532]/12 flex items-center justify-center text-[#4a2532] hover:bg-[#f3d7dc]/50 active:scale-95 transition-all shadow-xs">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h12" /></svg>
+      </button>
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <span id="header-brand-name" class="font-scriptEn text-3xl sm:text-[34px] text-[#4a2532] leading-none pt-1">Habiba</span>
+        <div class="w-11 h-11 rounded-full overflow-hidden border border-[#4a2532]/15 shadow-xs group-hover:scale-105 transition-transform exact-logo-mount"></div>
+      </a>
+    </div>
+  </header>
+
+  <div id="side-drawer-backdrop" class="fixed inset-0 z-50 bg-[#2d1820]/45 backdrop-blur-xs hidden opacity-0 transition-opacity duration-300">
+    <aside id="side-drawer-panel" class="w-80 max-w-[85vw] h-full bg-[#fbf7f4] border-l border-[#4a2532]/12 shadow-2xl p-6 flex flex-col justify-between translate-x-full transition-transform duration-300">
+      <div>
+        <div class="flex items-center justify-between pb-5 border-b border-[#4a2532]/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full overflow-hidden border border-[#4a2532]/15 exact-logo-mount"></div>
+            <div>
+              <div class="font-scriptEn text-2xl text-[#4a2532] leading-none">Habiba</div>
+              <div class="font-sansEn text-[9px] tracking-[0.2em] uppercase text-[#4a2532]/65 font-semibold mt-1">HANDMADE BY HABIBA HASAN</div>
+            </div>
+          </div>
+          <button id="close-drawer-btn" type="button" aria-label="إغلاق القائمة" class="w-9 h-9 rounded-xl bg-white border border-[#4a2532]/12 flex items-center justify-center text-[#4a2532] hover:bg-[#f3d7dc]/50 transition-colors">✕</button>
+        </div>
+        <nav class="mt-6 flex flex-col gap-2">
+          <a href="#story" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold text-[#2d1820] hover:bg-[#f3d7dc]/45 transition-colors"><span>حكاية Habiba</span><span class="text-[#4a2532]/50 text-xs">01</span></a>
+          <a href="#collection" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold text-[#2d1820] hover:bg-[#f3d7dc]/45 transition-colors"><span>المجموعات</span><span class="text-[#4a2532]/50 text-xs">02</span></a>
+          <a href="#note" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold text-[#2d1820] hover:bg-[#f3d7dc]/45 transition-colors"><span>رسالة حب</span><span class="text-[#4a2532]/50 text-xs">03</span></a>
+          <a href="#contact" class="drawer-link flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-bold text-[#2d1820] hover:bg-[#f3d7dc]/45 transition-colors"><span>تواصلي معنا</span><span class="text-[#4a2532]/50 text-xs">04</span></a>
+          <button type="button" data-open-order="طلب قطعة مخصوص" class="drawer-link mt-2 flex items-center justify-between px-4 py-3.5 rounded-2xl text-sm font-extrabold bg-[#4a2532] text-white hover:bg-[#5c2d3d] transition-colors shadow-sm"><span>اطلبي قطعة مخصوص</span><span>✦</span></button>
+        </nav>
+      </div>
+      <div class="pt-4 border-t border-[#4a2532]/10 space-y-3">
+        <button id="drawer-open-admin-btn" type="button" class="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-[#f3d7dc]/60 border border-[#4a2532]/15 text-xs font-extrabold text-[#4a2532] hover:bg-[#f3d7dc] transition-colors"><span>لوحة الإدارة</span><span>🔒</span></button>
+        <p class="text-[11px] text-center text-[#2d1820]/60">قطع معمولة على مهلك، عشانك ♥</p>
+      </div>
+    </aside>
+  </div>
+
+  <section id="hero" class="relative overflow-hidden bg-gradient-to-b from-[#fbf7f4] via-[#f9e8ec]/75 to-[#f3d7dc]/70 pt-10 pb-16 sm:pt-14 sm:pb-24">
+    <div class="pointer-events-none absolute -top-20 -right-24 w-72 h-72 rounded-full bg-[#e8b4bc]/25 blur-3xl"></div>
+    <div class="pointer-events-none absolute bottom-6 -left-20 w-80 h-80 rounded-full bg-[#f3d7dc]/50 blur-3xl"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <div class="lg:col-span-7 text-center lg:text-right space-y-5">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/85 border border-[#4a2532]/12 shadow-2xs">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#4a2532]"></span>
+            <span id="hero-eyebrow" class="text-xs sm:text-[13px] font-bold text-[#4a2532]">شغل معمول بإيدين بتحب التفاصيل</span>
+          </div>
+          <h1 id="hero-title" class="text-3xl sm:text-5xl lg:text-[52px] font-black text-[#2d1820] leading-[1.2] tracking-tight">قطع معمولة على مهلك، عشانك</h1>
+          <p id="hero-subtitle" class="text-base sm:text-lg text-[#2d1820]/80 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">تطريز وهاند ميد معمولين بحب، عشان كل تفصيلة تبقى شبهك.</p>
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+            <a href="#collection" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#4a2532] text-white text-sm font-extrabold shadow-lg shadow-[#4a2532]/20 hover:bg-[#5c2d3d] active:scale-[0.98] transition-all"><span>شاهدي الشغل</span><span class="text-base leading-none">↗</span></a>
+            <a href="#story" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/90 text-[#4a2532] border border-[#4a2532]/20 text-sm font-bold hover:bg-[#f3d7dc]/50 transition-all"><span>اعرفي حكايتنا</span><span class="text-base leading-none">&rsaquo;</span></a>
+          </div>
+          <p class="text-xs sm:text-[13px] font-bold text-[#4a2532]/80 pt-1">كل قطعة لها حكاية صغيرة، وتبدأ منك.</p>
+        </div>
+        <div class="lg:col-span-5 flex flex-col items-center justify-center">
+          <div class="relative animate-gentle-float">
+            <div class="absolute -top-3 -left-2 z-20 px-3.5 py-1.5 rounded-full bg-white border border-[#4a2532]/15 shadow-md -rotate-6"><span class="font-serifEn italic text-sm font-semibold text-[#4a2532]">♥ made with love</span></div>
+            <div class="w-64 h-64 sm:w-72 sm:h-72 rounded-full p-4 bg-white/60 backdrop-blur-xs border border-[#4a2532]/15 shadow-xl shadow-[#4a2532]/10 flex items-center justify-center">
+              <div class="w-full h-full rounded-full overflow-hidden shadow-inner exact-logo-mount"></div>
+            </div>
+          </div>
+          <div class="mt-4 font-sansEn text-[11px] font-bold tracking-[0.24em] uppercase text-[#4a2532]/80 text-center">THREADS OF LOVE • MADE FOR YOU</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bg-[#4a2532] text-[#fbf7f4] py-3 overflow-hidden border-y border-white/10" aria-hidden="true">
+    <div class="animate-marquee-track font-sansEn text-xs font-bold tracking-[0.22em] uppercase">
+      <div class="flex items-center">
+        <span class="mx-4">HANDMADE BY HABIBA</span><span class="text-[#e8b4bc]">•</span><span class="mx-4">HANDMADE WITH LOVE</span><span class="text-[#e8b4bc]">•</span><span class="mx-4">HANDMADE BY HABIBA</span><span class="text-[#e8b4bc]">•</span><span class="mx-4">HANDMADE WITH LOVE</span><span class="text-[#e8b4bc]">•</span>
+      </div>
+      <div class="flex items-center">
+        <span class="mx-4">HANDMADE BY HABIBA</span><span class="text-[#e8b4bc]">•</span><span class="mx-4">HANDMADE WITH LOVE</span><span class="text-[#e8b4bc]">•</span><span class="mx-4">HANDMADE BY HABIBA</span><span class="text-[#e8b4bc]">•</span><span class="mx-4">HANDMADE WITH LOVE</span><span class="text-[#e8b4bc]">•</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="story" class="py-16 sm:py-24 bg-[#fbf7f4]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="font-sansEn text-xs font-bold tracking-[0.22em] uppercase text-[#4a2532]/65 mb-2">01 / OUR LITTLE STORY</div>
+      <p class="text-sm font-bold text-[#4a2532] mb-2">من غرزة صغيرة تبدأ الحكاية</p>
+      <h2 class="text-2xl sm:text-4xl font-black text-[#2d1820] mb-5 leading-snug">حاجات بسيطة، بس شبهك.</h2>
+      <p id="story-paragraph" class="text-base sm:text-[17px] text-[#2d1820]/80 leading-[1.9] mb-7">Habiba هي مساحة هادية لكل حاجة معمولة بإيد. من أول الخيط لآخر لمسة، بنحب القطع اللي تحسي إنها اتعملت مخصوص عشانك، مش مجرد حاجة شبه أي حاجة.</p>
+      <a href="#note" class="inline-flex items-center gap-2 text-sm font-extrabold text-[#4a2532] border-b-2 border-[#e8b4bc] pb-1 hover:border-[#4a2532] transition-colors"><span>اقري الرسالة اللي مع كل طلب</span><span>↗</span></a>
+    </div>
+  </section>
+
+  <section id="collection" class="py-16 sm:py-24 bg-gradient-to-b from-[#f6efe9] to-[#f9e8ec]/65 border-y border-[#4a2532]/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
+        <div>
+          <div class="font-sansEn text-xs font-bold tracking-[0.22em] uppercase text-[#4a2532]/65 mb-2">02 / THE COLLECTION</div>
+          <h2 class="text-2xl sm:text-4xl font-black text-[#2d1820] leading-snug">اختاري القطعة اللي لمستك</h2>
+          <p class="text-sm text-[#2d1820]/75 mt-1.5 max-w-lg">كل منتج هنا بيظهر بعد ما نضيفه مخصوص، عشان نفضل محافظين على روح الشغل اليدوي.</p>
+        </div>
+        <button type="button" data-open-order="طلب قطعة مخصوص" class="self-start md:self-auto inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold shadow-md shadow-[#4a2532]/15 hover:bg-[#5c2d3d] active:scale-[0.98] transition-all"><span>اطلبي قطعة مخصوص / سجلي طلبك الآن</span><span>✦</span></button>
+      </div>
+      <div id="category-filter-pills" class="flex flex-wrap items-center gap-2 mb-8"></div>
+      <div id="collection-empty-state" class="hidden rounded-3xl bg-white/90 border border-[#4a2532]/12 p-8 sm:p-12 text-center shadow-sm max-w-2xl mx-auto">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#f3d7dc]/70 text-[#4a2532] flex items-center justify-center text-2xl">✦</div>
+        <h3 class="text-xl sm:text-2xl font-black text-[#2d1820] mb-2">المجموعة الأولى لسه بتتجهز</h3>
+        <p class="text-sm text-[#2d1820]/75 max-w-md mx-auto mb-6 leading-relaxed">قريباً هنلاقي هنا قطع Habiba الجديدة، وكل واحدة هتكون معمولة بحب مخصوص. تقدري كمان تطلبي تصميمك الخاص دلوقتي!</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button type="button" data-open-order="طلب قطعة مخصوص" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold hover:bg-[#5c2d3d] transition-colors"><span>اطلبي قطعة مخصوص دلوقتي</span><span>💬</span></button>
+          
+        </div>
+      </div>
+      <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="note" class="py-16 sm:py-24 bg-[#fbf7f4]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-72 sm:w-80">
+            <div class="absolute inset-0 rounded-3xl bg-[#e8b4bc]/45 rotate-6 translate-x-2 translate-y-2"></div>
+            <div class="relative z-10 rounded-3xl bg-white border border-[#4a2532]/12 p-7 text-center shadow-xl shadow-[#4a2532]/10 -rotate-2 hover:rotate-0 transition-transform duration-300">
+              <div class="font-sansEn text-[9px] font-bold tracking-[0.22em] uppercase text-[#4a2532]/60 mb-3">A LITTLE NOTE FROM HABIBA</div>
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border border-[#4a2532]/10 exact-logo-mount"></div>
+              <div class="font-serifEn italic text-2xl sm:text-[27px] font-semibold text-[#2d1820] mb-2">Thank you for your order</div>
+              <p class="text-xs sm:text-[13px] font-bold text-[#2d1820]/80 leading-relaxed mb-3">كل غرزة في القطعة دي اتعملت بحب مخصوص عشان تكون شبهك ♡</p>
+              <div class="inline-block px-4 py-1 rounded-full bg-[#f9e8ec] text-xs font-extrabold text-[#4a2532]">صُنِعَتْ بِحُبْ ♥</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 space-y-5">
+          <div class="font-sansEn text-xs font-bold tracking-[0.22em] uppercase text-[#4a2532]/65">03 / A NOTE WITH EVERY ORDER</div>
+          <h2 class="text-2xl sm:text-4xl font-black text-[#2d1820] leading-snug">كل طلب بيوصل ومعاه رسالة.</h2>
+          <p class="text-base text-[#2d1820]/80 leading-relaxed">مش بس قطعة هاند ميد، دي لحظة صغيرة متغلفة بعناية، فيها وقت ومجهود وحب كتير.</p>
+          <ul class="space-y-3.5 pt-2">
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-[#2d1820]"><span class="w-7 h-7 rounded-full bg-[#f3d7dc] text-[#4a2532] flex items-center justify-center text-xs font-black shrink-0">✓</span><span>تغليف هدايا بسيط وأنيق يليق بالقطعة</span></li>
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-[#2d1820]"><span class="w-7 h-7 rounded-full bg-[#f3d7dc] text-[#4a2532] flex items-center justify-center text-xs font-black shrink-0">✓</span><span>كارت شكر مكتوب بحب مع كل أوردر</span></li>
+            <li class="flex items-center gap-3 text-sm sm:text-base font-bold text-[#2d1820]"><span class="w-7 h-7 rounded-full bg-[#f3d7dc] text-[#4a2532] flex items-center justify-center text-xs font-black shrink-0">✓</span><span>إمكانية إضافة اسم أو تاريخ أو رسالة خاصة</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-16 sm:py-24 bg-[#f9e8ec]/75 border-t border-[#4a2532]/10 text-center">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="font-sansEn text-xs font-bold tracking-[0.22em] uppercase text-[#4a2532]/65 mb-2">04 / STAY CLOSE</div>
+      <h2 class="text-2xl sm:text-4xl font-black text-[#2d1820] mb-3">خليكي قريبة من كل جديد.</h2>
+      <p class="text-sm sm:text-base text-[#2d1820]/75 max-w-md mx-auto mb-7">امسحي الكود أو تابعينا على السوشيال ميديا عشان تشوفي القطع الجديدة أول ما تنزل.</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-9">
+        <a id="social-instagram-btn" href="https://instagram.com/habiba_hm_egy" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-[#4a2532]/15 text-xs sm:text-sm font-extrabold text-[#4a2532] shadow-xs hover:bg-[#4a2532] hover:text-white transition-all"><span>Instagram</span><span class="font-sansEn text-xs opacity-75">habiba_hm_egy</span><span>↗</span></a>
+        <a id="social-facebook-btn" href="https://facebook.com/habiba.handmade.10" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-[#4a2532]/15 text-xs sm:text-sm font-extrabold text-[#4a2532] shadow-xs hover:bg-[#4a2532] hover:text-white transition-all"><span>Facebook</span><span class="font-sansEn text-xs opacity-75">habiba.handmade.10</span><span>↗</span></a>
+        <a id="social-tiktok-btn" href="https://tiktok.com/@habibba_handmade" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-[#4a2532]/15 text-xs sm:text-sm font-extrabold text-[#4a2532] shadow-xs hover:bg-[#4a2532] hover:text-white transition-all"><span>TikTok</span><span class="font-sansEn text-xs opacity-75">@habibba_handmade</span><span>↗</span></a>
+      </div>
+      <div class="max-w-[230px] mx-auto rounded-3xl bg-white border border-[#4a2532]/15 p-5 shadow-lg shadow-[#4a2532]/8">
+        <div id="qr-svg-container" class="w-44 h-44 mx-auto rounded-2xl overflow-hidden bg-white flex items-center justify-center"></div>
+        <div class="mt-3 font-sansEn text-[10px] font-bold tracking-[0.22em] uppercase text-[#4a2532]">SCAN TO SAY HELLO</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-[#261219] text-[#fbf7f4] pt-14 pb-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col items-center text-center pb-10 border-b border-white/12">
+        <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 shadow-lg mb-4 exact-logo-mount"></div>
+        <p id="footer-prompt" class="text-sm sm:text-base font-bold text-[#fbf7f4]/90 max-w-md">للطلب أو الاستفسار، ابعتي لنا رسالة وسيبي الباقي علينا.</p>
+        <button type="button" data-open-order="طلب قطعة مخصوص" class="mt-4 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#e8b4bc] text-[#261219] text-xs sm:text-sm font-black hover:bg-[#f3d7dc] transition-colors"><span>اطلبي قطعتك الآن</span><span>💬</span></button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 py-8 border-b border-white/12 items-end">
+        <div>
+          <div class="font-sansEn text-[10px] font-bold tracking-[0.22em] uppercase text-[#e8b4bc] mb-3">FOLLOW ALONG</div>
+          <div class="flex flex-col gap-2.5 text-sm font-bold">
+            <a id="footer-ig-link" href="https://instagram.com/habiba_hm_egy" target="_blank" rel="noopener noreferrer" class="hover:text-[#e8b4bc] transition-colors">Instagram — habiba_hm_egy ↗</a>
+            <a id="footer-fb-link" href="https://facebook.com/habiba.handmade.10" target="_blank" rel="noopener noreferrer" class="hover:text-[#e8b4bc] transition-colors">Facebook — habiba.handmade.10 ↗</a>
+            <a id="footer-tt-link" href="https://tiktok.com/@habibba_handmade" target="_blank" rel="noopener noreferrer" class="hover:text-[#e8b4bc] transition-colors">TikTok — @habibba_handmade ↗</a>
+          </div>
+        </div>
+        <div class="sm:text-left">
+          <div class="font-sansEn text-[10px] font-bold tracking-[0.22em] uppercase text-[#fbf7f4]/65 mb-1.5">HANDMADE BY HABIBA HASAN</div>
+          <div class="font-serifEn italic text-3xl sm:text-4xl leading-tight text-[#fbf7f4]">made slowly, made<br />with love.</div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-[#fbf7f4]/65" style="padding-bottom: env(safe-area-inset-bottom, 0px)">
+        <span>© 2026 Habiba Handmade — All rights reserved.</span>
+        <button id="footer-open-admin-btn" type="button" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/8 border border-white/15 text-[#fbf7f4] font-bold hover:bg-white/15 transition-colors"><span>دخول صاحبة المشروع</span><span>🔒</span></button>
+      </div>
+    </div>
+  </footer>
+
+  <div id="order-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#2d1820]/60 backdrop-blur-xs p-4 overflow-y-auto">
+    <div class="w-full max-w-lg rounded-3xl bg-[#fbf7f4] border border-[#4a2532]/15 p-6 sm:p-7 shadow-2xl my-auto">
+      <div class="flex items-start justify-between gap-3 pb-4 border-b border-[#4a2532]/10">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-full overflow-hidden border border-[#4a2532]/15 exact-logo-mount shrink-0"></div>
+          <div>
+            <span class="font-sansEn text-[10px] font-bold tracking-[0.2em] uppercase text-[#4a2532]/65">NEW ORDER</span>
+            <h3 class="text-lg sm:text-xl font-black text-[#2d1820]">سجلي بيانات طلبك الآن</h3>
+          </div>
+        </div>
+        <button id="close-order-modal-btn" type="button" aria-label="إغلاق نافذة الطلب" class="w-9 h-9 rounded-xl bg-white border border-[#4a2532]/12 flex items-center justify-center text-[#4a2532] hover:bg-[#f3d7dc]/50">✕</button>
+      </div>
+      <form id="customer-order-form" class="mt-5 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label for="cust-name" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">الاسم بالكامل *</label>
+            <input id="cust-name" type="text" required placeholder="مثال: سارة محمود" class="w-full rounded-2xl bg-white border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" />
+          </div>
+          <div>
+            <label for="cust-phone" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">رقم التليفون / الواتساب *</label>
+            <input id="cust-phone" type="tel" dir="ltr" required placeholder="010xxxxxxxx" class="w-full rounded-2xl bg-white border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" />
+          </div>
+        </div>
+        <div>
+          <label for="cust-address" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">المحافظة والعنوان بالتفصيل *</label>
+          <input id="cust-address" type="text" required placeholder="مثال: القاهرة - مدينة نصر - شارع..." class="w-full rounded-2xl bg-white border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          <div class="sm:col-span-2">
+            <label for="cust-product" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">القطعة المطلوبة أو نوع الطلب *</label>
+            <input id="cust-product" type="text" required placeholder="مثال: طارة تطريز بالاسم" class="w-full rounded-2xl bg-white border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" />
+          </div>
+          <div>
+            <label for="cust-qty" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">الكمية</label>
+            <input id="cust-qty" type="number" min="1" value="1" class="w-full rounded-2xl bg-white border border-[#4a2532]/20 px-4 py-2.5 text-sm text-center font-bold outline-none focus:border-[#4a2532]" />
+          </div>
+        </div>
+        <div>
+          <label for="cust-notes" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">تفاصيل إضافية (الاسم المطلوب تطريزه / الألوان / الملاحظات)</label>
+          <textarea id="cust-notes" rows="2" placeholder="اكتبي أي تفاصيل تحبي ننفذها في القطعة..." class="w-full rounded-2xl bg-white border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]"></textarea>
+        </div>
+        <button type="submit" class="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#4a2532] text-white text-sm font-extrabold shadow-lg shadow-[#4a2532]/20 hover:bg-[#5c2d3d] active:scale-[0.99] transition-all"><span>تأكيد الطلب</span><span>✓</span></button>
+      </form>
+      <div id="order-success-panel" class="hidden mt-5 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-950 space-y-2.5">
+        <div class="text-sm font-extrabold">✓ تم تسجيل طلبك بنجاح برقم <span id="saved-order-code" class="font-sansEn"></span></div>
+        <p class="text-xs leading-relaxed text-emerald-900">وصل طلبك لإدارة المتجر وهنتواصل معاكي قريباً. دي بيانات طلبك:</p><div id="order-summary" class="rounded-xl bg-white border border-emerald-200 p-3 text-xs space-y-1 text-[#2d1820]"></div>
+        <button type="button" id="order-done-btn" class="px-5 py-2 rounded-full bg-emerald-700 text-white text-xs font-extrabold hover:bg-emerald-800 transition-colors">تمام</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="admin-studio-overlay" class="fixed inset-0 z-50 hidden bg-[#fbf7f4] overflow-y-auto">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div class="flex items-center justify-between pb-5 border-b border-[#4a2532]/12 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-full overflow-hidden border border-[#4a2532]/15 exact-logo-mount"></div>
+          <div>
+            <div class="font-sansEn text-[10px] font-bold tracking-[0.24em] uppercase text-[#4a2532]/65">PRIVATE STUDIO</div>
+            <h2 class="text-lg sm:text-xl font-black text-[#2d1820]">أهلاً بيكي في لوحة Habiba</h2>
+          </div>
+        </div>
+        <button id="close-admin-studio-btn" type="button" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border border-[#4a2532]/15 text-xs font-extrabold text-[#4a2532] hover:bg-[#f3d7dc]/50 transition-colors"><span>العودة للموقع</span><span>✕</span></button>
+      </div>
+
+      <div id="admin-login-card" class="max-w-md mx-auto mt-10 rounded-3xl bg-white border border-[#4a2532]/12 p-7 sm:p-8 shadow-xl text-center">
+        <div class="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden border border-[#4a2532]/15 exact-logo-mount"></div>
+        <div class="font-sansEn text-[10px] font-bold tracking-[0.24em] uppercase text-[#4a2532]/65 mb-1">PRIVATE STUDIO</div>
+        <h3 class="text-xl font-black text-[#2d1820] mb-1">أهلاً بيكي في لوحة Habiba</h3>
+        <p class="text-xs text-[#2d1820]/70 mb-6">أدخلي كلمة المرور الخاصة بإدارة المتجر والطلبات</p>
+        <form id="admin-password-form" class="space-y-4 text-right">
+          <div>
+            <label for="admin-password-input" class="block text-xs font-extrabold text-[#4a2532] mb-1.5">كلمة المرور</label>
+            <input id="admin-password-input" type="password" dir="ltr" required placeholder="••••••••" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-3 text-sm text-left outline-none focus:border-[#4a2532]" />
+          </div>
+          <p id="admin-login-error" class="hidden text-xs font-extrabold text-rose-700">كلمة المرور غير صحيحة، حاولي مرة تانية.</p>
+          <button type="submit" class="w-full py-3.5 rounded-full bg-[#4a2532] text-white text-sm font-extrabold hover:bg-[#5c2d3d] transition-colors">دخول لوحة الإدارة</button>
+        </form>
+      </div>
+
+      <div id="admin-dashboard-content" class="hidden space-y-6">
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" data-admin-tab="orders" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-[#4a2532] text-white transition-colors">الطلبات (<span id="tab-orders-count">0</span>)</button>
+          <button type="button" data-admin-tab="overview" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors">نظرة عامة</button>
+          <button type="button" data-admin-tab="identity" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors">هوية الموقع</button>
+          <button type="button" data-admin-tab="categories" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors">الأقسام</button>
+          <button type="button" data-admin-tab="products" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors">المنتجات</button>
+        </div>
+
+        <div id="pane-orders" class="admin-pane space-y-4"><div id="admin-orders-container" class="space-y-4"></div></div>
+
+        <div id="pane-overview" class="admin-pane hidden space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 shadow-xs"><div class="text-xs font-bold text-[#2d1820]/65">إجمالي الطلبات الواردة</div><div id="stat-total-orders" class="text-3xl font-black text-[#4a2532] mt-1">0</div></div>
+            <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 shadow-xs"><div class="text-xs font-bold text-[#2d1820]/65">عدد المنتجات المعروضة</div><div id="stat-total-products" class="text-3xl font-black text-[#4a2532] mt-1">0</div></div>
+            <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 shadow-xs"><div class="text-xs font-bold text-[#2d1820]/65">عدد الأقسام</div><div id="stat-total-categories" class="text-3xl font-black text-[#4a2532] mt-1">0</div></div>
+          </div>
+          <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 shadow-xs space-y-3">
+            <h3 class="text-base font-black text-[#2d1820]">تصدير نسخة جاهزة للرفع</h3>
+            <p class="text-xs text-[#2d1820]/75 leading-relaxed">تقدري تحمّلي نسخة <span class="font-sansEn font-bold">index.html</span> في أي وقت لرفعها أونلاين.</p>
+            <button id="download-site-html-btn" type="button" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#4a2532] text-white text-xs font-extrabold hover:bg-[#5c2d3d] transition-colors"><span>تحميل ملف index.html</span><span>⬇️</span></button>
+          </div>
+        </div>
+
+        <div id="pane-identity" class="admin-pane hidden">
+          <form id="admin-identity-form" class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 space-y-4 shadow-xs">
+            <h3 class="text-base font-black text-[#2d1820] pb-2 border-b border-[#4a2532]/10">إعدادات هوية الموقع وكلمة المرور</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">كلمة مرور لوحة الإدارة</label><input id="set-password" type="text" dir="ltr" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">عنوان الواجهة الرئيسي</label><input id="set-hero-title" type="text" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">النص الفرعي للواجهة</label><input id="set-hero-sub" type="text" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">حساب Instagram</label><input id="set-ig" type="text" dir="ltr" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">صفحة Facebook</label><input id="set-fb" type="text" dir="ltr" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">حساب TikTok</label><input id="set-tt" type="text" dir="ltr" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">رابط كود QR</label><input id="set-qr-url" type="url" dir="ltr" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm text-left outline-none focus:border-[#4a2532]" /></div>
+            </div>
+            <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">فقرة الحكاية (01 / OUR LITTLE STORY)</label><textarea id="set-story" rows="3" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]"></textarea></div>
+            <button type="submit" class="px-6 py-3 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold hover:bg-[#5c2d3d] transition-colors">حفظ التعديلات ✓</button>
+          </form>
+        </div>
+
+        <div id="pane-categories" class="admin-pane hidden space-y-4">
+          <form id="admin-add-category-form" class="rounded-3xl bg-white border border-[#4a2532]/12 p-5 flex flex-wrap gap-3 shadow-xs">
+            <input id="new-category-name" type="text" required placeholder="اسم القسم الجديد (مثال: طارات تطريز)" class="flex-1 min-w-[200px] rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" />
+            <button type="submit" class="px-6 py-2.5 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold hover:bg-[#5c2d3d] transition-colors">+ إضافة قسم</button>
+          </form>
+          <div id="admin-categories-list" class="space-y-2.5"></div>
+        </div>
+
+        <div id="pane-products" class="admin-pane hidden space-y-5">
+          <form id="admin-product-form" class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 space-y-4 shadow-xs">
+            <div class="flex items-center justify-between">
+              <h3 id="prod-form-heading" class="text-base font-black text-[#2d1820]">إضافة منتج جديد للمتجر</h3>
+              <button id="cancel-edit-prod-btn" type="button" class="hidden text-xs font-bold text-rose-700 underline">إلغاء التعديل</button>
+            </div>
+            <input type="hidden" id="edit-prod-id" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">اسم المنتج *</label><input id="prod-title" type="text" required placeholder="مثال: طارة تطريز ورد بلدي" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">القسم (اختياري)</label><select id="prod-category" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]"></select></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">السعر بالجنيه المصري (EGP)</label><input id="prod-price" type="number" min="0" placeholder="250" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
+              <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">شارة مميزة (اختياري)</label><input id="prod-badge" type="text" placeholder="مثال: الأكثر طلباً / هدية مميزة" class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" /></div>
+            </div>
+            <div>
+              <label class="block text-xs font-extrabold text-[#4a2532] mb-1">صورة المنتج (ارفعي صورة من جهازك أو اتركيها فاضية لعرض رسمة طارة تطريز فنية)</label>
+              <div class="flex flex-wrap items-center gap-3">
+                <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#f3d7dc]/65 border border-[#4a2532]/20 text-xs font-extrabold text-[#4a2532] hover:bg-[#f3d7dc] transition-colors"><span>اختيار صورة من الجهاز 📷</span><input id="prod-image-file" type="file" accept="image/*" class="hidden" /></label>
+                <button id="clear-prod-image-btn" type="button" class="text-xs font-bold text-[#4a2532]/70 hover:text-[#4a2532] underline">استخدام الرسمة الفنية الافتراضية</button>
+                <span id="prod-image-status" class="text-xs text-[#2d1820]/70">الرسمة الفنية الافتراضية مفعّلة</span>
+              </div>
+              <input type="hidden" id="prod-image-data" />
+            </div>
+            <div><label class="block text-xs font-extrabold text-[#4a2532] mb-1">وصف القطعة</label><textarea id="prod-desc" rows="2" placeholder="تفاصيل الخيوط، المقاس، وإمكانية كتابة الاسم..." class="w-full rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]"></textarea></div>
+            <button type="submit" class="px-6 py-3 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold hover:bg-[#5c2d3d] transition-colors">حفظ المنتج في المتجر ✓</button>
+          </form>
+          <div id="admin-products-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      const STORAGE_KEY = 'habiba_handmade_studio_v3';
+      const DEFAULT_STATE = {
+        password: '3/4/2006',
+        settings: {
+          whatsapp: '201000000000',
+          heroTitle: 'قطع معمولة على مهلك، عشانك',
+          heroSub: 'تطريز وهاند ميد معمولين بحب، عشان كل تفصيلة تبقى شبهك.',
+          story: 'Habiba هي مساحة هادية لكل حاجة معمولة بإيد. من أول الخيط لآخر لمسة، بنحب القطع اللي تحسي إنها اتعملت مخصوص عشانك، مش مجرد حاجة شبه أي حاجة.',
+          igHandle: 'habiba_hm_egy',
+          fbHandle: 'habiba.handmade.10',
+          ttHandle: '@habibba_handmade',
+          qrUrl: 'https://instagram.com/habiba_hm_egy',
+        },
+        categories: [],
+        products: [],
+        orders: [],
+      };
+      
+
+      let appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      let activeCategoryFilter = 'ALL';
+      let isAdminAuthenticated = false;
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') {
+            appState = {
+              password: parsed.password || DEFAULT_STATE.password,
+              settings: { ...DEFAULT_STATE.settings, ...(parsed.settings || {}) },
+              categories: Array.isArray(parsed.categories) ? parsed.categories : [],
+              products: Array.isArray(parsed.products) ? parsed.products : [],
+              orders: Array.isArray(parsed.orders) ? parsed.orders : [],
+            };
+          }
+        } catch (err) { console.error('Error loading localStorage:', err); }
+      }
+
+      function saveState() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); }
+        catch (err) { console.error('Error saving localStorage:', err); showToast('تعذر حفظ البيانات في المتصفح (المساحة ممتلئة)'); }
+      }
+
+      function showToast(msg) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+        const el = document.createElement('div');
+        el.className = 'pointer-events-auto rounded-2xl bg-[#4a2532] text-[#fbf7f4] border border-[#e8b4bc]/40 px-4 py-3 text-xs font-extrabold shadow-xl transition-all duration-300';
+        el.textContent = msg;
+        container.appendChild(el);
+        setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; setTimeout(() => el.remove(), 280); }, 2800);
+      }
+
+      function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+      function escapeAttr(str) { return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+      function sanitizePhoneDigits(raw) {
+        let digits = String(raw || '').replace(/[^0-9]/g, '');
+        if (digits.startsWith('01') && digits.length === 11) digits = '2' + digits;
+        return digits;
+      }
+
+      function buildWhatsAppUrl(phoneDigits, message) {
+        const cleanNum = sanitizePhoneDigits(phoneDigits || appState.settings.whatsapp || '201000000000');
+        return `https://wa.me/${cleanNum}?text=${encodeURIComponent(message || '')}`;
+      }
+
+      function mountExactLogos() {
+        const tpl = document.getElementById('exact-habiba-logo-template');
+        if (!tpl) return;
+        document.querySelectorAll('.exact-logo-mount').forEach((node) => { node.innerHTML = ''; node.appendChild(tpl.content.cloneNode(true)); });
+      }
+
+      function getArtisticHoopSvg(title, categoryName) {
+        return `
+          <svg viewBox="0 0 320 240" class="w-full h-full block" role="img" aria-label="${escapeAttr(title)}">
+            <defs><radialGradient id="hoopFabric" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fffdfb" /><stop offset="100%" stop-color="#f6efe9" /></radialGradient></defs>
+            <rect width="320" height="240" fill="#f9e8ec" />
+            <circle cx="160" cy="116" r="76" fill="url(#hoopFabric)" stroke="#c79b73" stroke-width="7" />
+            <circle cx="160" cy="116" r="71" fill="none" stroke="#9e7450" stroke-width="1.2" />
+            <rect x="151" y="31" width="18" height="9" rx="2" fill="#d4af37" stroke="#9e7c1c" stroke-width="1" />
+            <line x1="145" y1="35.5" x2="175" y2="35.5" stroke="#b59226" stroke-width="2" />
+            <path d="M 118,136 C 110,112 122,88 144,82" fill="none" stroke="#6c856b" stroke-width="1.6" stroke-linecap="round" />
+            <path d="M 202,136 C 210,112 198,88 176,82" fill="none" stroke="#6c856b" stroke-width="1.6" stroke-linecap="round" />
+            <circle cx="122" cy="108" r="5" fill="#e8b4bc" /><circle cx="134" cy="90" r="4.5" fill="#d99aa5" />
+            <circle cx="198" cy="108" r="5" fill="#e8b4bc" /><circle cx="186" cy="90" r="4.5" fill="#d99aa5" />
+            <circle cx="160" cy="78" r="5.5" fill="#4a2532" opacity="0.85" />
+            <text x="160" y="122" text-anchor="middle" fill="#4a2532" font-size="28" font-family="'Alex Brush', Georgia, cursive">Habiba</text>
+            <text x="160" y="140" text-anchor="middle" fill="#4a2532" opacity="0.7" font-size="9.5" font-weight="700" font-family="'Cairo', sans-serif">${escapeHtml(categoryName)}</text>
+            <text x="160" y="218" text-anchor="middle" fill="#4a2532" opacity="0.75" font-size="10" font-weight="700" font-family="'Montserrat', sans-serif" letter-spacing="2">HANDMADE BY HABIBA HASAN</text>
+          </svg>`;
+      }
+
+      function renderQrSvg() {
+        const container = document.getElementById('qr-svg-container');
+        if (!container) return;
+        const size = 21;
+        const text = (appState.settings.qrUrl || 'https://instagram.com/habiba_hm_egy').trim();
+        let hash = 2166136261;
+        for (let i = 0; i < text.length; i++) { hash ^= text.charCodeAt(i); hash = Math.imul(hash, 16777619); }
+        const grid = Array.from({ length: size }, () => Array(size).fill(false));
+        function drawFinder(r0, c0) {
+          for (let r = -1; r <= 7; r++) {
+            for (let c = -1; c <= 7; c++) {
+              const rr = r0 + r, cc = c0 + c;
+              if (rr < 0 || rr >= size || cc < 0 || cc >= size) continue;
+              if (r === -1 || r === 7 || c === -1 || c === 7) { grid[rr][cc] = false; }
+              else {
+                const isBorder = r === 0 || r === 6 || c === 0 || c === 6;
+                const isCore = r >= 2 && r <= 4 && c >= 2 && c <= 4;
+                grid[rr][cc] = isBorder || isCore;
+              }
+            }
+          }
+        }
+        drawFinder(0, 0); drawFinder(0, size - 7); drawFinder(size - 7, 0);
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if ((r < 8 && c < 8) || (r < 8 && c >= size - 8) || (r >= size - 8 && c < 8)) continue;
+            const v = (hash ^ Math.imul(r + 13, 37) ^ Math.imul(c + 29, 73)) >>> 0;
+            grid[r][c] = (v & 1) === 1;
+          }
+        }
+        let rects = '';
+        for (let r = 0; r < size; r++) for (let c = 0; c < size; c++) if (grid[r][c]) rects += `<rect x="${c + 1}" y="${r + 1}" width="1" height="1" rx="0.2" fill="#2d1820" />`;
+        container.innerHTML = `<svg viewBox="0 0 ${size + 2} ${size + 2}" class="w-full h-full block" role="img" aria-label="QR Code"><rect width="${size + 2}" height="${size + 2}" fill="#ffffff" />${rects}</svg>`;
+      }
+
+      function applySettingsToDom() {
+        const s = appState.settings;
+        document.getElementById('hero-title').textContent = s.heroTitle || DEFAULT_STATE.settings.heroTitle;
+        document.getElementById('hero-subtitle').textContent = s.heroSub || DEFAULT_STATE.settings.heroSub;
+        document.getElementById('story-paragraph').textContent = s.story || DEFAULT_STATE.settings.story;
+        const igClean = (s.igHandle || 'habiba_hm_egy').replace(/^@/, '');
+        const fbClean = (s.fbHandle || 'habiba.handmade.10').replace(/^@/, '');
+        const ttHandle = s.ttHandle || '@habibba_handmade';
+        const ttClean = ttHandle.replace(/^@/, '');
+        const igUrl = igClean.startsWith('http') ? igClean : `https://instagram.com/${igClean}`;
+        const fbUrl = fbClean.startsWith('http') ? fbClean : `https://facebook.com/${fbClean}`;
+        const ttUrl = ttClean.startsWith('http') ? ttClean : `https://tiktok.com/@${ttClean}`;
+        const igBtn = document.getElementById('social-instagram-btn'); igBtn.href = igUrl; igBtn.querySelector('span:nth-child(2)').textContent = igClean;
+        const fbBtn = document.getElementById('social-facebook-btn'); fbBtn.href = fbUrl; fbBtn.querySelector('span:nth-child(2)').textContent = fbClean;
+        const ttBtn = document.getElementById('social-tiktok-btn'); ttBtn.href = ttUrl; ttBtn.querySelector('span:nth-child(2)').textContent = ttHandle.startsWith('@') ? ttHandle : `@${ttHandle}`;
+        document.getElementById('footer-ig-link').href = igUrl;
+        document.getElementById('footer-ig-link').textContent = `Instagram — ${igClean} ↗`;
+        document.getElementById('footer-fb-link').href = fbUrl;
+        document.getElementById('footer-fb-link').textContent = `Facebook — ${fbClean} ↗`;
+        document.getElementById('footer-tt-link').href = ttUrl;
+        document.getElementById('footer-tt-link').textContent = `TikTok — ${ttHandle.startsWith('@') ? ttHandle : '@' + ttHandle} ↗`;
+        renderQrSvg();
+      }
+
+      function renderCollectionSection() {
+        const pillsWrap = document.getElementById('category-filter-pills');
+        const emptyBox = document.getElementById('collection-empty-state');
+        const grid = document.getElementById('products-grid');
+        const on = 'bg-[#4a2532] text-white shadow-xs';
+        const off = 'bg-white text-[#4a2532] border border-[#4a2532]/15 hover:bg-[#f3d7dc]/50';
+        pillsWrap.innerHTML = [
+          `<button type="button" data-cat-filter="ALL" class="px-4 py-2 rounded-full text-xs font-extrabold transition-all ${activeCategoryFilter === 'ALL' ? on : off}">الكل</button>`,
+          ...appState.categories.map((cat) => `<button type="button" data-cat-filter="${escapeAttr(cat.id)}" class="px-4 py-2 rounded-full text-xs font-extrabold transition-all ${activeCategoryFilter === cat.id ? on : off}">${escapeHtml(cat.name)}</button>`),
+        ].join('');
+
+        pillsWrap.classList.toggle('hidden', appState.categories.length === 0);
+        const visibleProducts = appState.products.filter((p) => activeCategoryFilter === 'ALL' || p.categoryId === activeCategoryFilter);
+        if (visibleProducts.length === 0) { emptyBox.classList.remove('hidden'); grid.innerHTML = ''; return; }
+        emptyBox.classList.add('hidden');
+        grid.innerHTML = visibleProducts.map((prod) => {
+          const cat = appState.categories.find((c) => c.id === prod.categoryId);
+          const catName = cat ? cat.name : '';
+          const priceText = prod.price ? `${Number(prod.price).toLocaleString('ar-EG')} EGP` : 'حسب الطلب';
+          const hasImg = Boolean(prod.imageData && prod.imageData.trim());
+          return `
+            <article class="rounded-3xl bg-white border border-[#4a2532]/12 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <div class="relative aspect-[4/3] bg-[#f9e8ec] overflow-hidden">
+                  ${hasImg
+                    ? `<img src="${escapeAttr(prod.imageData)}" alt="${escapeAttr(prod.title)}" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" /><div style="display:none;" class="w-full h-full">${getArtisticHoopSvg(prod.title, catName)}</div>`
+                    : getArtisticHoopSvg(prod.title, catName)}
+                  ${prod.badge ? `<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 text-[#4a2532] border border-[#4a2532]/15 text-[11px] font-extrabold shadow-2xs">${escapeHtml(prod.badge)}</span>` : ''}
+                </div>
+                <div class="p-5">
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    ${catName ? `<span class="px-3 py-0.5 rounded-full bg-[#f3d7dc]/70 text-[#4a2532] text-[11px] font-bold">${escapeHtml(catName)}</span>` : '<span></span>'}
+                    <span class="font-sansEn text-xs font-extrabold text-[#4a2532]">${escapeHtml(priceText)}</span>
+                  </div>
+                  <h3 class="text-base sm:text-lg font-black text-[#2d1820] mb-1.5">${escapeHtml(prod.title)}</h3>
+                  <p class="text-xs sm:text-[13px] text-[#2d1820]/75 leading-relaxed">${escapeHtml(prod.description || '')}</p>
+                </div>
+              </div>
+              <div class="px-5 pb-5 pt-1">
+                <button type="button" data-open-order="${escapeAttr(prod.title)}" class="w-full py-3 px-5 rounded-full bg-[#4a2532] text-white text-xs sm:text-sm font-extrabold hover:bg-[#5c2d3d] active:scale-[0.98] transition-all flex items-center justify-center gap-2"><span>اطلبي الآن</span><span>💬</span></button>
+              </div>
+            </article>`;
+        }).join('');
+      }
+
+      function openOrderModal(prefillProduct) {
+        const modal = document.getElementById('order-modal');
+        document.getElementById('order-success-panel').classList.add('hidden'); document.getElementById('customer-order-form').classList.remove('hidden');
+        if (prefillProduct) document.getElementById('cust-product').value = prefillProduct;
+        modal.classList.remove('hidden'); modal.classList.add('flex');
+      }
+      function closeOrderModal() {
+        const modal = document.getElementById('order-modal');
+        modal.classList.add('hidden'); modal.classList.remove('flex');
+      }
+
+      function renderAdminOrders() {
+        const container = document.getElementById('admin-orders-container');
+        const countBadge = document.getElementById('tab-orders-count');
+        if (countBadge) countBadge.textContent = String(appState.orders.length);
+        if (!container) return;
+        if (appState.orders.length === 0) {
+          container.innerHTML = `<div class="rounded-3xl bg-white border border-[#4a2532]/12 p-10 text-center text-sm font-bold text-[#2d1820]/65">لا توجد طلبات مسجلة حتى الآن. أي طلب يرسله العميل سيظهر هنا فوراً.</div>`;
+          return;
+        }
+        container.innerHTML = appState.orders.map((ord) => {
+          const customerReplyText = [
+            `أهلاً بكِ يا ${ord.customerName} 🌸 من Habiba Handmade`,
+            `بخصوص طلبك رقم (${ord.orderCode}):`,
+            `• القطعة: ${ord.product} (الكمية: ${ord.quantity})`,
+            `• العنوان: ${ord.address}`,
+            ord.notes ? `• التفاصيل: ${ord.notes}` : '',
+            `يسعدنا تأكيد التفاصيل معكِ الآن ♥`,
+          ].filter(Boolean).join('\n');
+          const customerWaUrl = buildWhatsAppUrl(ord.phone, customerReplyText);
+          return `
+            <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-5 sm:p-6 shadow-xs space-y-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#4a2532]/10">
+                <div class="flex items-center gap-2.5">
+                  <span class="font-sansEn px-3 py-1 rounded-full bg-[#4a2532] text-white text-xs font-bold">${escapeHtml(ord.orderCode)}</span>
+                  <span class="text-base font-black text-[#2d1820]">${escapeHtml(ord.customerName)}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <select data-order-status="${escapeAttr(ord.id)}" class="rounded-full bg-[#fbf7f4] border border-[#4a2532]/20 px-3.5 py-1.5 text-xs font-extrabold text-[#4a2532] outline-none">
+                    ${['جديد', 'قيد التنفيذ', 'تم التسليم'].map((st) => `<option value="${st}" ${ord.status === st ? 'selected' : ''}>${st}</option>`).join('')}
+                  </select>
+                  <span class="text-[11px] text-[#2d1820]/60">${escapeHtml(ord.createdAt)}</span>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm">
+                <div><strong class="text-[#4a2532]">رقم التليفون:</strong> <span dir="ltr" class="font-sansEn font-bold">${escapeHtml(ord.phone)}</span></div>
+                <div><strong class="text-[#4a2532]">القطعة:</strong> ${escapeHtml(ord.product)} (×${escapeHtml(ord.quantity)})</div>
+                <div class="sm:col-span-2"><strong class="text-[#4a2532]">العنوان:</strong> ${escapeHtml(ord.address)}</div>
+                ${ord.notes ? `<div class="sm:col-span-2"><strong class="text-[#4a2532]">ملاحظات:</strong> ${escapeHtml(ord.notes)}</div>` : ''}
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#4a2532]/10">
+                <a href="${escapeAttr(customerWaUrl)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 text-white text-xs font-extrabold hover:bg-emerald-800 transition-colors"><span>تواصل على واتساب 💬</span><span>↗</span></a>
+                <button type="button" data-delete-order="${escapeAttr(ord.id)}" class="px-4 py-2 rounded-full border border-rose-200 text-rose-700 text-xs font-bold hover:bg-rose-50 transition-colors">حذف الطلب</button>
+              </div>
+            </div>`;
+        }).join('');
+      }
+
+      function renderAdminCategories() {
+        const listEl = document.getElementById('admin-categories-list');
+        const prodCatSelect = document.getElementById('prod-category');
+        if (prodCatSelect) prodCatSelect.innerHTML = '<option value="">بدون قسم</option>' + appState.categories.map((c) => `<option value="${escapeAttr(c.id)}">${escapeHtml(c.name)}</option>`).join('');
+        if (!listEl) return;
+        listEl.innerHTML = appState.categories.map((c) => `
+          <div class="rounded-2xl bg-white border border-[#4a2532]/12 px-5 py-3.5 flex items-center justify-between">
+            <span class="text-sm font-extrabold text-[#2d1820]">${escapeHtml(c.name)}</span>
+            <button type="button" data-delete-cat="${escapeAttr(c.id)}" class="text-xs font-bold text-rose-700 hover:underline">حذف</button>
+          </div>`).join('');
+      }
+
+      function renderAdminProducts() {
+        const container = document.getElementById('admin-products-list');
+        if (!container) return;
+        if (appState.products.length === 0) {
+          container.innerHTML = `<div class="sm:col-span-2 rounded-3xl bg-white border border-[#4a2532]/12 p-8 text-center text-xs font-bold text-[#2d1820]/65">لا توجد منتجات مضافة بعد. أضيفي أول قطعة من النموذج أعلاه.</div>`;
+          return;
+        }
+        container.innerHTML = appState.products.map((p) => {
+          const cat = appState.categories.find((c) => c.id === p.categoryId);
+          return `
+            <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-5 flex flex-col justify-between gap-3 shadow-2xs">
+              <div>
+                <div class="flex items-center justify-between text-[11px] font-bold text-[#4a2532]/75 mb-1"><span>${escapeHtml(cat ? cat.name : '')}</span><span class="font-sansEn">${p.price ? `${p.price} EGP` : ''}</span></div>
+                <div class="text-base font-black text-[#2d1820]">${escapeHtml(p.title)}</div>
+                <p class="text-xs text-[#2d1820]/70 mt-1">${escapeHtml(p.description || '')}</p>
+              </div>
+              <div class="flex items-center gap-2 pt-2 border-t border-[#4a2532]/10">
+                <button type="button" data-edit-prod="${escapeAttr(p.id)}" class="px-4 py-1.5 rounded-full bg-[#fbf7f4] border border-[#4a2532]/20 text-xs font-bold text-[#4a2532]">تعديل</button>
+                <button type="button" data-delete-prod="${escapeAttr(p.id)}" class="px-4 py-1.5 rounded-full border border-rose-200 text-xs font-bold text-rose-700 mr-auto">حذف</button>
+              </div>
+            </div>`;
+        }).join('');
+      }
+
+      function renderAdminStats() {
+        document.getElementById('stat-total-orders').textContent = String(appState.orders.length);
+        document.getElementById('stat-total-products').textContent = String(appState.products.length);
+        document.getElementById('stat-total-categories').textContent = String(appState.categories.length);
+      }
+
+      function populateIdentitySettingsForm() {
+        const s = appState.settings;
+        
+        document.getElementById('set-password').value = appState.password || '3/4/2006';
+        document.getElementById('set-hero-title').value = s.heroTitle || '';
+        document.getElementById('set-hero-sub').value = s.heroSub || '';
+        document.getElementById('set-ig').value = s.igHandle || '';
+        document.getElementById('set-fb').value = s.fbHandle || '';
+        document.getElementById('set-tt').value = s.ttHandle || '';
+        document.getElementById('set-qr-url').value = s.qrUrl || '';
+        document.getElementById('set-story').value = s.story || '';
+      }
+
+      function openAdminStudio() {
+        document.getElementById('admin-studio-overlay').classList.remove('hidden');
+        if (isAdminAuthenticated) {
+          document.getElementById('admin-login-card').classList.add('hidden');
+          document.getElementById('admin-dashboard-content').classList.remove('hidden');
+          populateIdentitySettingsForm(); renderAdminOrders(); renderAdminCategories(); renderAdminProducts(); renderAdminStats();
+        } else {
+          document.getElementById('admin-login-card').classList.remove('hidden');
+          document.getElementById('admin-dashboard-content').classList.add('hidden');
+          document.getElementById('admin-password-input').value = '';
+          document.getElementById('admin-login-error').classList.add('hidden');
+        }
+      }
+      function closeAdminStudio() { document.getElementById('admin-studio-overlay').classList.add('hidden'); }
+
+      function openSideDrawer() {
+        const backdrop = document.getElementById('side-drawer-backdrop');
+        const panel = document.getElementById('side-drawer-panel');
+        backdrop.classList.remove('hidden');
+        requestAnimationFrame(() => { backdrop.classList.remove('opacity-0'); panel.classList.remove('translate-x-full'); });
+      }
+      function closeSideDrawer() {
+        const backdrop = document.getElementById('side-drawer-backdrop');
+        const panel = document.getElementById('side-drawer-panel');
+        backdrop.classList.add('opacity-0'); panel.classList.add('translate-x-full');
+        setTimeout(() => backdrop.classList.add('hidden'), 280);
+      }
+
+      function bindEventListeners() {
+        document.getElementById('open-drawer-btn').addEventListener('click', openSideDrawer);
+        document.getElementById('close-drawer-btn').addEventListener('click', closeSideDrawer);
+        document.getElementById('side-drawer-backdrop').addEventListener('click', (e) => { if (e.target.id === 'side-drawer-backdrop') closeSideDrawer(); });
+        document.querySelectorAll('.drawer-link').forEach((el) => el.addEventListener('click', closeSideDrawer));
+        document.getElementById('drawer-open-admin-btn').addEventListener('click', () => { closeSideDrawer(); openAdminStudio(); });
+
+        document.getElementById('category-filter-pills').addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-cat-filter]');
+          if (!btn) return;
+          activeCategoryFilter = btn.getAttribute('data-cat-filter') || 'ALL';
+          renderCollectionSection();
+        });
+
+        
+
+        document.body.addEventListener('click', (e) => {
+          const trigger = e.target.closest('[data-open-order]');
+          if (!trigger) return;
+          openOrderModal(trigger.getAttribute('data-open-order') || '');
+        });
+
+        document.getElementById('close-order-modal-btn').addEventListener('click', closeOrderModal);
+        document.getElementById('order-done-btn').addEventListener('click', closeOrderModal);
+        document.getElementById('order-modal').addEventListener('click', (e) => { if (e.target.id === 'order-modal') closeOrderModal(); });
+
+        document.getElementById('customer-order-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const customerName = document.getElementById('cust-name').value.trim();
+          const phone = document.getElementById('cust-phone').value.trim();
+          const address = document.getElementById('cust-address').value.trim();
+          const product = document.getElementById('cust-product').value.trim();
+          const quantity = Math.max(1, Number(document.getElementById('cust-qty').value) || 1);
+          const notes = document.getElementById('cust-notes').value.trim();
+          if (!customerName || !phone || !address || !product) { showToast('يرجى ملء البيانات المطلوبة أولاً'); return; }
+          const orderCode = 'HB-' + String(Math.floor(1000 + Math.random() * 9000));
+          appState.orders.unshift({ id: 'ord_' + Date.now(), orderCode, customerName, phone, address, product, quantity, notes, status: 'جديد', createdAt: new Date().toLocaleString('ar-EG') });
+          saveState(); renderAdminOrders(); renderAdminStats();
+          const waMessage = [
+            `أهلاً Habiba Handmade 🌸 طلب جديد برقم (${orderCode}):`,
+            `• الاسم: ${customerName}`,
+            `• رقم التليفون: ${phone}`,
+            `• العنوان: ${address}`,
+            `• القطعة المطلوبة: ${product} (الكمية: ${quantity})`,
+            notes ? `• تفاصيل وملاحظات: ${notes}` : '',
+          ].filter(Boolean).join('\n');
+          const waUrl = buildWhatsAppUrl(appState.settings.whatsapp, waMessage);
+          document.getElementById('saved-order-code').textContent = orderCode;
+          const sum = document.getElementById('order-summary'); sum.innerHTML = '';
+          [['رقم الطلب', orderCode], ['الاسم', customerName], ['التليفون', phone], ['العنوان', address], ['القطعة', product + ' (×' + quantity + ')'], ['ملاحظات', notes]].forEach(([k, v]) => { if (!v) return; const d = document.createElement('div'); const b = document.createElement('b'); b.textContent = k + ': '; d.append(b, document.createTextNode(v)); sum.appendChild(d); });
+          document.getElementById('order-success-panel').classList.remove('hidden');
+          showToast(`تم تسجيل طلبك ${orderCode} ✓`);
+          document.getElementById('customer-order-form').reset(); document.getElementById('customer-order-form').classList.add('hidden');
+        });
+
+        document.getElementById('footer-open-admin-btn').addEventListener('click', openAdminStudio);
+        document.getElementById('close-admin-studio-btn').addEventListener('click', closeAdminStudio);
+
+        document.getElementById('admin-password-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const entered = document.getElementById('admin-password-input').value.trim();
+          if (entered === String(appState.password || '3/4/2006')) {
+            isAdminAuthenticated = true;
+            document.getElementById('admin-login-error').classList.add('hidden');
+            openAdminStudio();
+            showToast('أهلاً بيكي في لوحة Habiba ♥');
+          } else {
+            document.getElementById('admin-login-error').classList.remove('hidden');
+          }
+        });
+
+        document.querySelectorAll('.admin-tab').forEach((tabBtn) => {
+          tabBtn.addEventListener('click', () => {
+            const target = tabBtn.getAttribute('data-admin-tab');
+            document.querySelectorAll('.admin-tab').forEach((btn) => {
+              const active = btn.getAttribute('data-admin-tab') === target;
+              btn.className = active
+                ? 'admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-[#4a2532] text-white transition-colors'
+                : 'admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors';
+            });
+            document.querySelectorAll('.admin-pane').forEach((pane) => pane.classList.toggle('hidden', pane.id !== `pane-${target}`));
+          });
+        });
+
+        document.getElementById('admin-orders-container').addEventListener('change', (e) => {
+          const sel = e.target.closest('[data-order-status]');
+          if (!sel) return;
+          const ord = appState.orders.find((o) => o.id === sel.getAttribute('data-order-status'));
+          if (ord) { ord.status = sel.value; saveState(); showToast('تم تحديث حالة الطلب'); }
+        });
+
+        document.getElementById('admin-orders-container').addEventListener('click', (e) => {
+          const delBtn = e.target.closest('[data-delete-order]');
+          if (!delBtn) return;
+          const id = delBtn.getAttribute('data-delete-order');
+          appState.orders = appState.orders.filter((o) => o.id !== id);
+          saveState(); renderAdminOrders(); renderAdminStats(); showToast('تم حذف الطلب');
+        });
+
+        document.getElementById('admin-identity-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const newPass = document.getElementById('set-password').value.trim();
+          if (newPass) appState.password = newPass;
+          
+          appState.settings.heroTitle = document.getElementById('set-hero-title').value.trim() || DEFAULT_STATE.settings.heroTitle;
+          appState.settings.heroSub = document.getElementById('set-hero-sub').value.trim() || DEFAULT_STATE.settings.heroSub;
+          appState.settings.igHandle = document.getElementById('set-ig').value.trim() || 'habiba_hm_egy';
+          appState.settings.fbHandle = document.getElementById('set-fb').value.trim() || 'habiba.handmade.10';
+          appState.settings.ttHandle = document.getElementById('set-tt').value.trim() || '@habibba_handmade';
+          appState.settings.qrUrl = document.getElementById('set-qr-url').value.trim() || 'https://instagram.com/habiba_hm_egy';
+          appState.settings.story = document.getElementById('set-story').value.trim() || DEFAULT_STATE.settings.story;
+          saveState(); applySettingsToDom(); showToast('تم حفظ إعدادات هوية الموقع بنجاح ✓');
+        });
+
+        document.getElementById('admin-add-category-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const input = document.getElementById('new-category-name');
+          const name = input.value.trim();
+          if (!name) return;
+          appState.categories.push({ id: 'cat_' + Date.now(), name });
+          input.value = '';
+          saveState(); renderAdminCategories(); renderCollectionSection(); renderAdminStats();
+          showToast(`تم إضافة قسم "${name}"`);
+        });
+
+        document.getElementById('admin-categories-list').addEventListener('click', (e) => {
+          const delBtn = e.target.closest('[data-delete-cat]');
+          if (!delBtn) return;
+          
+          const id = delBtn.getAttribute('data-delete-cat');
+          appState.categories = appState.categories.filter((c) => c.id !== id);
+          if (activeCategoryFilter === id) activeCategoryFilter = 'ALL';
+          saveState(); renderAdminCategories(); renderCollectionSection(); renderAdminStats();
+          showToast('تم حذف القسم');
+        });
+
+        document.getElementById('prod-image-file').addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            document.getElementById('prod-image-data').value = String(reader.result || '');
+            document.getElementById('prod-image-status').textContent = `تم اختيار الصورة: ${file.name}`;
+            showToast('تم تحميل صورة المنتج ✓');
+          };
+          reader.readAsDataURL(file);
+        });
+
+        document.getElementById('clear-prod-image-btn').addEventListener('click', () => {
+          document.getElementById('prod-image-data').value = '';
+          document.getElementById('prod-image-file').value = '';
+          document.getElementById('prod-image-status').textContent = 'الرسمة الفنية الافتراضية مفعّلة';
+        });
+
+        function resetProductForm() {
+          document.getElementById('edit-prod-id').value = '';
+          document.getElementById('prod-form-heading').textContent = 'إضافة منتج جديد للمتجر';
+          document.getElementById('cancel-edit-prod-btn').classList.add('hidden');
+          document.getElementById('admin-product-form').reset();
+          document.getElementById('prod-image-data').value = '';
+          document.getElementById('prod-image-status').textContent = 'الرسمة الفنية الافتراضية مفعّلة';
+        }
+        document.getElementById('cancel-edit-prod-btn').addEventListener('click', resetProductForm);
+
+        document.getElementById('admin-product-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const editId = document.getElementById('edit-prod-id').value.trim();
+          const title = document.getElementById('prod-title').value.trim();
+          const categoryId = document.getElementById('prod-category').value;
+          const priceVal = document.getElementById('prod-price').value.trim();
+          const price = priceVal ? Number(priceVal) : 0;
+          const badge = document.getElementById('prod-badge').value.trim();
+          const imageData = document.getElementById('prod-image-data').value.trim();
+          const description = document.getElementById('prod-desc').value.trim();
+          if (!title) return;
+          if (editId) {
+            const existing = appState.products.find((p) => p.id === editId);
+            if (existing) Object.assign(existing, { title, categoryId, price, badge, imageData, description });
+            showToast('تم تحديث المنتج بنجاح ✓');
+          } else {
+            appState.products.unshift({ id: 'prod_' + Date.now(), title, categoryId, price, badge, imageData, description });
+            showToast('تم إضافة المنتج للمتجر ✓');
+          }
+          resetProductForm(); saveState(); renderAdminProducts(); renderCollectionSection(); renderAdminStats();
+        });
+
+        document.getElementById('admin-products-list').addEventListener('click', (e) => {
+          const editBtn = e.target.closest('[data-edit-prod]');
+          if (editBtn) {
+            const prod = appState.products.find((p) => p.id === editBtn.getAttribute('data-edit-prod'));
+            if (!prod) return;
+            document.getElementById('edit-prod-id').value = prod.id;
+            document.getElementById('prod-form-heading').textContent = 'تعديل بيانات المنتج';
+            document.getElementById('cancel-edit-prod-btn').classList.remove('hidden');
+            document.getElementById('prod-title').value = prod.title;
+            document.getElementById('prod-category').value = prod.categoryId;
+            document.getElementById('prod-price').value = prod.price || '';
+            document.getElementById('prod-badge').value = prod.badge || '';
+            document.getElementById('prod-image-data').value = prod.imageData || '';
+            document.getElementById('prod-image-status').textContent = prod.imageData ? 'صورة مخصصة محفوظة' : 'الرسمة الفنية الافتراضية مفعّلة';
+            document.getElementById('prod-desc').value = prod.description || '';
+            return;
+          }
+          const delBtn = e.target.closest('[data-delete-prod]');
+          if (delBtn) {
+            const id = delBtn.getAttribute('data-delete-prod');
+            appState.products = appState.products.filter((p) => p.id !== id);
+            saveState(); renderAdminProducts(); renderCollectionSection(); renderAdminStats();
+            showToast('تم حذف المنتج');
+          }
+        });
+
+        document.getElementById('download-site-html-btn').addEventListener('click', () => {
+          const docStr = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const blob = new Blob([docStr], { type: 'text/html;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url; a.download = 'index.html';
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          showToast('تم تحميل ملف index.html ✓');
+        });
+      }
+
+      loadState();
+      mountExactLogos();
+      applySettingsToDom();
+      renderCollectionSection();
+      renderAdminOrders();
+      renderAdminCategories();
+      renderAdminProducts();
+      renderAdminStats();
+      bindEventListeners();
+    })();
+  </script>
+</body>
+</html>
