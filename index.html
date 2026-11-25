@@ -266,8 +266,8 @@
   </footer>
 
   <!-- نافذة عرض الصورة والفيديو بحجم كامل عند الضغط -->
-  <div id="media-lightbox-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-[#1b0d12]/88 backdrop-blur-sm p-4">
-    <div class="w-full max-w-3xl rounded-3xl bg-[#261219] text-[#fbf7f4] border border-white/15 p-4 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+  <div id="media-lightbox-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-[#1b0d12]/90 backdrop-blur-sm p-3 sm:p-5">
+    <div class="w-full max-w-4xl rounded-3xl bg-[#261219] text-[#fbf7f4] border border-white/15 p-4 sm:p-6 shadow-2xl space-y-4 max-h-[94vh] overflow-y-auto">
       <div class="flex items-center justify-between gap-3">
         <div>
           <h3 id="lightbox-title" class="text-base sm:text-lg font-black text-white"></h3>
@@ -276,7 +276,7 @@
         <button id="close-lightbox-btn" type="button" aria-label="إغلاق المعاينة" class="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold">✕</button>
       </div>
       <div id="lightbox-tabs" class="flex flex-wrap items-center gap-2"></div>
-      <div id="lightbox-stage" class="rounded-2xl bg-[#180a0f] border border-white/10 p-2 sm:p-4 flex items-center justify-center min-h-[260px] max-h-[65vh] overflow-auto"></div>
+      <div id="lightbox-stage" class="rounded-2xl bg-[#180a0f] border border-white/10 p-2 sm:p-4 flex items-center justify-center min-h-[260px] max-h-[70vh] overflow-auto"></div>
       <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
         <span class="text-xs text-[#fbf7f4]/70">العرض كامل بدون قص</span>
         <button id="lightbox-order-btn" type="button" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#e8b4bc] text-[#261219] text-xs sm:text-sm font-black hover:bg-[#f3d7dc] transition-colors"><span>اطلبي هذه القطعة</span><span>💬</span></button>
@@ -449,7 +449,7 @@
             </div>
 
             <div class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/12 p-4 space-y-2">
-              <label class="block text-xs font-extrabold text-[#4a2532]">فيديو المنتج (اختياري — ملف فيديو من جهازك أو رابط فيديو مباشر)</label>
+              <label class="block text-xs font-extrabold text-[#4a2532]">فيديو المنتج (اختياري — ملف فيديو أو رابط فيديو مباشر)</label>
               <div class="flex flex-wrap items-center gap-3">
                 <label class="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#f3d7dc]/75 border border-[#4a2532]/20 text-xs font-extrabold text-[#4a2532] hover:bg-[#f3d7dc] transition-colors"><span>اختيار فيديو 🎬</span><input id="prod-video-file" type="file" accept="video/*" class="hidden" /></label>
                 <button id="clear-prod-video-btn" type="button" class="text-xs font-bold text-[#4a2532]/70 hover:text-[#4a2532] underline">إزالة الفيديو</button>
@@ -468,16 +468,12 @@
         <div id="pane-admins" class="admin-pane hidden space-y-5">
           <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 shadow-xs space-y-4">
             <h3 class="text-base font-black text-[#2d1820]">إدارة صلاحية الدخول للوحة الإدارة</h3>
-            <p class="text-xs text-[#2d1820]/75 leading-relaxed">أول شخص يدخل لوحة الإدارة بيتسجل كأدمن أساسي، واللوحة مش بتظهر أو بتتفتح لأي شخص تاني إلا لو الأدمن الأساسي أضافه هنا.</p>
+            <p class="text-xs text-[#2d1820]/75 leading-relaxed">أول شخص يدخل لوحة الإدارة بيتثبت كأدمن أساسي واللوحة تختفي من باقي التليفونات. لو ضغطت على الزر تحت وفتحت إضافة شخص، أي تليفون تاني هيقدر يشوف زرار لوحة الإدارة ويدخل بالباسورد عادي من غير كتابة اسم ولا أي حاجة.</p>
             <div class="flex flex-wrap items-center gap-3 pt-1">
               <button id="claim-primary-admin-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#4a2532] text-white text-xs font-extrabold hover:bg-[#5c2d3d] transition-colors">تأكيد جهازي كأدمن أساسي ✓</button>
               <button id="toggle-allow-extra-admin-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#f3d7dc]/75 border border-[#4a2532]/20 text-[#4a2532] text-xs font-extrabold hover:bg-[#f3d7dc] transition-colors"></button>
             </div>
-            <form id="add-extra-admin-form" class="flex flex-wrap gap-3 pt-3 border-t border-[#4a2532]/10">
-              <input id="new-admin-label" type="text" required placeholder="اسم أو وصف الشخص المضاف (مثال: شريك / مساعد)" class="flex-1 min-w-[200px] rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/20 px-4 py-2.5 text-sm outline-none focus:border-[#4a2532]" />
-              <button type="submit" class="px-6 py-2.5 rounded-full bg-[#4a2532] text-white text-xs font-extrabold hover:bg-[#5c2d3d] transition-colors">+ إضافة أدمن جديد</button>
-            </form>
-            <div id="admin-members-list" class="space-y-2 pt-2"></div>
+            <div id="admin-status-summary" class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/15 px-4 py-3 text-xs font-bold text-[#2d1820]"></div>
           </div>
         </div>
       </div>
@@ -487,7 +483,7 @@
   <script>
     (function () {
       'use strict';
-      const STORAGE_KEY = 'habiba_handmade_studio_v4';
+      const STORAGE_KEY = 'habiba_handmade_studio_v5';
       const DEVICE_ID_KEY = 'habiba_device_token_v1';
       const FIREBASE_DB_URL = 'https://habiba-handmade-default-rtdb.firebaseio.com';
 
@@ -510,7 +506,6 @@
         password: '3/4/2006',
         primaryAdminToken: '',
         allowExtraAdminAdd: false,
-        extraAdmins: [],
         settings: {
           whatsapp: '201000000000',
           heroTitle: 'قطع معمولة على مهلك، عشانك',
@@ -544,15 +539,11 @@
         const rawProducts = Array.isArray(parsed.products)
           ? parsed.products
           : (parsed.products && typeof parsed.products === 'object' ? Object.values(parsed.products) : []);
-        const rawExtraAdmins = Array.isArray(parsed.extraAdmins)
-          ? parsed.extraAdmins
-          : (parsed.extraAdmins && typeof parsed.extraAdmins === 'object' ? Object.values(parsed.extraAdmins) : []);
 
         return {
           password: parsed.password || DEFAULT_STATE.password,
           primaryAdminToken: typeof parsed.primaryAdminToken === 'string' ? parsed.primaryAdminToken : '',
           allowExtraAdminAdd: Boolean(parsed.allowExtraAdminAdd),
-          extraAdmins: rawExtraAdmins.filter(Boolean),
           settings: { ...DEFAULT_STATE.settings, ...(parsed.settings || {}) },
           categories: rawCategories.filter(Boolean),
           products: rawProducts.filter(Boolean),
@@ -563,7 +554,6 @@
       function canCurrentDeviceAccessAdmin() {
         if (!appState.primaryAdminToken) return true;
         if (appState.primaryAdminToken === MY_DEVICE_TOKEN) return true;
-        if (appState.extraAdmins.some((m) => m.token === MY_DEVICE_TOKEN)) return true;
         if (appState.allowExtraAdminAdd) return true;
         return false;
       }
@@ -587,7 +577,7 @@
             osc.type = 'sine';
             osc.frequency.value = freq;
             gain.gain.setValueAtTime(0.001, ctx.currentTime + idx * 0.14);
-            gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + idx * 0.14 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.14, ctx.currentTime + idx * 0.14 + 0.03);
             gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.14 + 0.35);
             osc.connect(gain);
             gain.connect(ctx.destination);
@@ -658,7 +648,7 @@
 
       async function pullStateFromFirebase() {
         try {
-          const res = await fetch(`${FIREBASE_DB_URL}/store.json`, { cache: 'no-store' });
+          const res = await fetch(`${FIREBASE_DB_URL}/store.json?t=${Date.now()}`, { cache: 'no-store' });
           if (!res.ok) return;
           const remoteData = await res.json();
           if (remoteData && typeof remoteData === 'object') {
@@ -677,9 +667,9 @@
 
       function saveState() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); }
-        catch (err) { console.error('Error saving localStorage:', err); showToast('تعذر حفظ البيانات في المتصفح (المساحة ممتلئة)'); }
+        catch (err) { console.error('Error saving localStorage:', err); showToast('تعذر حفظ البيانات في المتصفح (حجم الملف كبير)'); }
         clearTimeout(syncTimer);
-        syncTimer = setTimeout(() => { pushStateToFirebase(); }, 180);
+        syncTimer = setTimeout(() => { pushStateToFirebase(); }, 150);
       }
 
       function showToast(msg) {
@@ -689,7 +679,7 @@
         el.className = 'pointer-events-auto rounded-2xl bg-[#4a2532] text-[#fbf7f4] border border-[#e8b4bc]/40 px-4 py-3 text-xs font-extrabold shadow-xl transition-all duration-300';
         el.textContent = msg;
         container.appendChild(el);
-        setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; setTimeout(() => el.remove(), 280); }, 3200);
+        setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; setTimeout(() => el.remove(), 280); }, 3400);
       }
 
       function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -792,7 +782,10 @@
       }
 
       function getProductVideoSrc(prod) {
-        return (prod && (prod.videoData || prod.videoUrl || '')).trim();
+        if (!prod) return '';
+        const vData = String(prod.videoData || '').trim();
+        const vUrl = String(prod.videoUrl || '').trim();
+        return vData || vUrl;
       }
 
       function openMediaLightbox(prodId, initialTab) {
@@ -837,9 +830,9 @@
           });
 
           if (activeTab === 'video' && videoSrc) {
-            stageEl.innerHTML = `<video src="${escapeAttr(videoSrc)}" controls autoplay playsinline class="max-w-full max-h-[58vh] w-auto h-auto rounded-xl object-contain bg-black"></video>`;
+            stageEl.innerHTML = `<video src="${escapeAttr(videoSrc)}" controls autoplay playsinline class="max-w-full max-h-[62vh] w-auto h-auto rounded-xl object-contain bg-black"></video>`;
           } else if (hasImg) {
-            stageEl.innerHTML = `<img src="${escapeAttr(prod.imageData)}" alt="${escapeAttr(prod.title)}" class="max-w-full max-h-[58vh] w-auto h-auto rounded-xl object-contain" />`;
+            stageEl.innerHTML = `<img src="${escapeAttr(prod.imageData)}" alt="${escapeAttr(prod.title)}" class="max-w-full max-h-[62vh] w-auto h-auto rounded-xl object-contain" />`;
           } else {
             stageEl.innerHTML = `<div class="w-full max-w-md aspect-[4/3] flex items-center justify-center">${getArtisticHoopSvg(prod.title, catName)}</div>`;
           }
@@ -884,22 +877,28 @@
           return `
             <article class="rounded-3xl bg-white border border-[#4a2532]/12 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
               <div>
-                <div class="relative w-full bg-[#f9e8ec] flex items-center justify-center cursor-pointer group overflow-hidden" data-lightbox-prod="${escapeAttr(prod.id)}" data-lightbox-tab="image">
-                  ${hasImg
-                    ? `<img src="${escapeAttr(prod.imageData)}" alt="${escapeAttr(prod.title)}" class="w-full h-auto max-h-80 object-contain block group-hover:scale-[1.01] transition-transform" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div style="display:none;" class="w-full aspect-[4/3] items-center justify-center">${getArtisticHoopSvg(prod.title, catName)}</div>`
-                    : `<div class="w-full aspect-[4/3] flex items-center justify-center">${getArtisticHoopSvg(prod.title, catName)}</div>`}
-                  ${prod.badge ? `<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 text-[#4a2532] border border-[#4a2532]/15 text-[11px] font-extrabold shadow-2xs">${escapeHtml(prod.badge)}</span>` : ''}
-                  <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full bg-[#2d1820]/75 text-white text-[10px] font-bold backdrop-blur-2xs">🔍 عرض كامل</span>
-                </div>
+                ${hasImg ? `
+                  <div class="relative w-full bg-[#f9e8ec] flex items-center justify-center cursor-pointer group overflow-hidden" data-lightbox-prod="${escapeAttr(prod.id)}" data-lightbox-tab="image">
+                    <img src="${escapeAttr(prod.imageData)}" alt="${escapeAttr(prod.title)}" class="w-full h-auto max-h-80 object-contain block group-hover:scale-[1.01] transition-transform" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                    <div style="display:none;" class="w-full aspect-[4/3] items-center justify-center">${getArtisticHoopSvg(prod.title, catName)}</div>
+                    ${prod.badge ? `<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 text-[#4a2532] border border-[#4a2532]/15 text-[11px] font-extrabold shadow-2xs">${escapeHtml(prod.badge)}</span>` : ''}
+                    <span class="absolute bottom-2.5 left-2.5 px-2.5 py-1 rounded-full bg-[#2d1820]/75 text-white text-[10px] font-bold backdrop-blur-2xs">🔍 عرض الصورة كاملة</span>
+                  </div>
+                ` : (!videoSrc ? `
+                  <div class="relative w-full aspect-[4/3] bg-[#f9e8ec] flex items-center justify-center cursor-pointer overflow-hidden" data-lightbox-prod="${escapeAttr(prod.id)}" data-lightbox-tab="image">
+                    ${getArtisticHoopSvg(prod.title, catName)}
+                    ${prod.badge ? `<span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 text-[#4a2532] border border-[#4a2532]/15 text-[11px] font-extrabold shadow-2xs">${escapeHtml(prod.badge)}</span>` : ''}
+                  </div>
+                ` : '')}
 
                 ${videoSrc ? `
                   <div class="px-4 pt-3">
-                    <div class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/12 p-2 space-y-1.5">
+                    <div class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/12 p-2.5 space-y-2">
                       <div class="flex items-center justify-between px-1">
-                        <span class="text-[11px] font-extrabold text-[#4a2532]">🎬 فيديو القطعة</span>
-                        <button type="button" data-lightbox-prod="${escapeAttr(prod.id)}" data-lightbox-tab="video" class="text-[11px] font-bold text-[#4a2532] underline">تكبير الفيديو</button>
+                        <span class="text-xs font-extrabold text-[#4a2532]">🎬 فيديو القطعة</span>
+                        <button type="button" data-lightbox-prod="${escapeAttr(prod.id)}" data-lightbox-tab="video" class="text-xs font-extrabold text-[#4a2532] underline">فتح الفيديو كامل</button>
                       </div>
-                      <video src="${escapeAttr(videoSrc)}" controls preload="metadata" playsinline class="w-full max-h-56 rounded-xl object-contain bg-black"></video>
+                      <video src="${escapeAttr(videoSrc)}" controls preload="metadata" playsinline class="w-full max-h-72 rounded-xl object-contain bg-black"></video>
                     </div>
                   </div>
                 ` : ''}
@@ -1031,36 +1030,22 @@
 
       function renderAdminMembers() {
         const toggleBtn = document.getElementById('toggle-allow-extra-admin-btn');
-        const listEl = document.getElementById('admin-members-list');
+        const summaryEl = document.getElementById('admin-status-summary');
         if (toggleBtn) {
           toggleBtn.textContent = appState.allowExtraAdminAdd
-            ? 'السماح بإضافة أدمن جديد: مفعّل (اضغط للإغلاق)'
-            : 'السماح بإضافة أدمن جديد: مقفول (للمضافين فقط)';
+            ? 'إضافة شخص آخر: مفتوح (يقدر يدخل بالباسورد) — اضغط للإغلاق'
+            : '+ إضافة شخص آخر (يقدر يدخل بالباسورد)';
         }
-        if (!listEl) return;
-
-        const rows = [];
-        if (appState.primaryAdminToken) {
-          const isMe = appState.primaryAdminToken === MY_DEVICE_TOKEN;
-          rows.push(`
-            <div class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/15 px-4 py-3 flex items-center justify-between text-xs font-bold">
-              <span>👑 الأدمن الأساسي ${isMe ? '(أنت الآن)' : ''}</span>
-              <span class="text-[#4a2532]">ثابت</span>
-            </div>`);
-        } else {
-          rows.push(`<div class="rounded-2xl bg-amber-50 border border-amber-200 px-4 py-3 text-xs font-bold text-amber-900">لم يتم تثبيت الأدمن الأساسي بعد. اضغط على "تأكيد جهازي كأدمن أساسي" أو سيتم تثبيته عند الدخول.</div>`);
+        if (summaryEl) {
+          const isPrimaryMe = appState.primaryAdminToken === MY_DEVICE_TOKEN;
+          const primaryText = appState.primaryAdminToken
+            ? (isPrimaryMe ? 'الأدمن الأساسي: مثبت على هذا الجهاز ✓' : 'الأدمن الأساسي: مثبت على جهاز آخر')
+            : 'الأدمن الأساسي: لم يتم تثبيته بعد';
+          const extraText = appState.allowExtraAdminAdd
+            ? 'الدخول لشخص إضافي: مسموح حالياً بأي جهاز يكتب الباسورد'
+            : 'الدخول لشخص إضافي: مقفول';
+          summaryEl.textContent = `${primaryText} • ${extraText}`;
         }
-
-        appState.extraAdmins.forEach((m) => {
-          const isMe = m.token === MY_DEVICE_TOKEN;
-          rows.push(`
-            <div class="rounded-2xl bg-white border border-[#4a2532]/12 px-4 py-3 flex items-center justify-between text-xs font-bold">
-              <span>${escapeHtml(m.label || 'أدمن إضافي')} ${isMe ? '(هذا الجهاز)' : ''}</span>
-              <button type="button" data-remove-extra-admin="${escapeAttr(m.id)}" class="text-rose-700 hover:underline">إزالة</button>
-            </div>`);
-        });
-
-        listEl.innerHTML = rows.join('');
       }
 
       function populateIdentitySettingsForm() {
@@ -1079,7 +1064,7 @@
       async function openAdminStudio() {
         await pullStateFromFirebase();
         if (!canCurrentDeviceAccessAdmin()) {
-          showToast('لوحة الإدارة مقصورة على الأدمن الأساسي ومن يضيفهم فقط');
+          showToast('لوحة الإدارة مقصورة على الأدمن الأساسي فقط');
           return;
         }
         document.getElementById('admin-studio-overlay').classList.remove('hidden');
@@ -1213,14 +1198,14 @@
 
         document.getElementById('enable-browser-notif-btn').addEventListener('click', async () => {
           if (!('Notification' in window)) {
-            showToast('المتصفح لا يدعم إشعارات النظام، الإشعار الداخلي والصوتي شغال');
+            showToast('المتصفح لا يدعم إشعارات النظام، التنبيه الداخلي والصوتي شغال');
             return;
           }
           const perm = await Notification.requestPermission();
           if (perm === 'granted') {
             showToast('تم تفعيل إشعارات الطلبات الجديدة 🔔');
           } else {
-            showToast('لم يتم منح إذن إشعارات المتصفح، التنبيه الداخلي شغال');
+            showToast('تم تفعيل التنبيه الداخلي والصوتي للطلبات الجديدة');
           }
         });
 
@@ -1407,35 +1392,7 @@
           appState.allowExtraAdminAdd = !appState.allowExtraAdminAdd;
           saveState();
           renderAdminMembers();
-          showToast(appState.allowExtraAdminAdd ? 'تم فتح إضافة أدمن جديد' : 'تم قفل إضافة أدمن جديد للغير');
-        });
-
-        document.getElementById('add-extra-admin-form').addEventListener('submit', (e) => {
-          e.preventDefault();
-          const input = document.getElementById('new-admin-label');
-          const label = input.value.trim();
-          if (!label) return;
-          const inviteToken = 'adm_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7);
-          appState.extraAdmins.push({
-            id: 'eadm_' + Date.now(),
-            label,
-            token: inviteToken,
-          });
-          input.value = '';
-          saveState();
-          renderAdminMembers();
-          showToast(`تمت إضافة "${label}" كأدمن جديد ✓`);
-        });
-
-        document.getElementById('admin-members-list').addEventListener('click', (e) => {
-          const remBtn = e.target.closest('[data-remove-extra-admin]');
-          if (!remBtn) return;
-          const id = remBtn.getAttribute('data-remove-extra-admin');
-          appState.extraAdmins = appState.extraAdmins.filter((m) => m.id !== id);
-          saveState();
-          renderAdminMembers();
-          syncAdminTriggerVisibility();
-          showToast('تمت إزالة الأدمن الإضافي');
+          showToast(appState.allowExtraAdminAdd ? 'تم فتح الدخول لشخص إضافي بالباسورد ✓' : 'تم قفل الدخول لغير الأدمن الأساسي');
         });
 
         document.getElementById('download-site-html-btn').addEventListener('click', () => {
@@ -1457,7 +1414,7 @@
       pullStateFromFirebase();
       setInterval(() => {
         pullStateFromFirebase();
-      }, 15000);
+      }, 5000);
     })();
   </script>
 </body>
