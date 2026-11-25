@@ -74,6 +74,11 @@
     </svg>
   </template>
 
+  <div id="live-order-banner" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-[105] w-[92vw] max-w-md rounded-2xl bg-[#4a2532] text-white border border-[#e8b4bc] px-4 py-3 shadow-2xl flex items-center justify-between gap-3">
+    <div class="text-xs font-extrabold leading-relaxed" id="live-order-banner-text">🔔 وصل طلب جديد!</div>
+    <button id="dismiss-live-banner-btn" type="button" class="px-3 py-1 rounded-full bg-white/15 text-[11px] font-bold hover:bg-white/25 shrink-0">إخفاء</button>
+  </div>
+
   <div id="toast-container" class="fixed bottom-5 left-5 z-[110] flex flex-col gap-2.5 max-w-xs sm:max-w-sm pointer-events-none"></div>
 
   <header class="sticky top-0 z-40 bg-[#fbf7f4]/90 backdrop-blur-md border-b border-[#4a2532]/10" style="padding-top: env(safe-area-inset-top, 0px)">
@@ -376,7 +381,7 @@
             <button type="button" data-admin-tab="products" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors">المنتجات</button>
             <button type="button" data-admin-tab="admins" class="admin-tab px-4 py-2.5 rounded-full text-xs font-extrabold bg-white text-[#4a2532] border border-[#4a2532]/15 transition-colors">الأدمن</button>
           </div>
-          <button id="enable-browser-notif-btn" type="button" class="px-4 py-2 rounded-full bg-[#f3d7dc]/75 border border-[#4a2532]/15 text-xs font-extrabold text-[#4a2532] hover:bg-[#f3d7dc] transition-colors">🔔 تفعيل إشعارات الطلبات</button>
+          <button id="test-alert-sound-btn" type="button" class="px-4 py-2 rounded-full bg-[#f3d7dc]/75 border border-[#4a2532]/15 text-xs font-extrabold text-[#4a2532] hover:bg-[#f3d7dc] transition-colors">🔔 تجربة صوت التنبيه</button>
         </div>
 
         <div id="pane-orders" class="admin-pane space-y-4"><div id="admin-orders-container" class="space-y-4"></div></div>
@@ -467,13 +472,13 @@
 
         <div id="pane-admins" class="admin-pane hidden space-y-5">
           <div class="rounded-3xl bg-white border border-[#4a2532]/12 p-6 shadow-xs space-y-4">
-            <h3 class="text-base font-black text-[#2d1820]">إدارة صلاحية الدخول للوحة الإدارة</h3>
-            <p class="text-xs text-[#2d1820]/75 leading-relaxed">أول شخص يدخل لوحة الإدارة بيتثبت كأدمن أساسي واللوحة تختفي من باقي التليفونات. لو ضغطت على الزر تحت وفتحت إضافة شخص، أي تليفون تاني هيقدر يشوف زرار لوحة الإدارة ويدخل بالباسورد عادي من غير كتابة اسم ولا أي حاجة.</p>
+            <h3 class="text-base font-black text-[#2d1820]">إضافة شخص للوحة الإدارة (يقفل تلقائياً بعد دخوله)</h3>
+            <p class="text-xs text-[#2d1820]/75 leading-relaxed">لما تدوس "إضافة شخص"، يقدر شخص واحد يدخل بالباسورد، وبمجرد دخوله بتتقفل الإضافة تلقائياً ويبقوا اتنين بس ومش بتظهر لحد تاني غير لو واحد من الاتنين فتح إضافة شخص من جوه.</p>
             <div class="flex flex-wrap items-center gap-3 pt-1">
               <button id="claim-primary-admin-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#4a2532] text-white text-xs font-extrabold hover:bg-[#5c2d3d] transition-colors">تأكيد جهازي كأدمن أساسي ✓</button>
-              <button id="toggle-allow-extra-admin-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#f3d7dc]/75 border border-[#4a2532]/20 text-[#4a2532] text-xs font-extrabold hover:bg-[#f3d7dc] transition-colors"></button>
+              <button id="open-single-extra-slot-btn" type="button" class="px-5 py-2.5 rounded-full bg-[#f3d7dc]/75 border border-[#4a2532]/20 text-[#4a2532] text-xs font-extrabold hover:bg-[#f3d7dc] transition-colors">+ إضافة شخص (يقفل تلقائياً بعد دخوله)</button>
             </div>
-            <div id="admin-status-summary" class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/15 px-4 py-3 text-xs font-bold text-[#2d1820]"></div>
+            <div id="admin-status-summary" class="rounded-2xl bg-[#fbf7f4] border border-[#4a2532]/15 px-4 py-3 text-xs font-bold text-[#2d1820] space-y-1"></div>
           </div>
         </div>
       </div>
@@ -483,7 +488,7 @@
   <script>
     (function () {
       'use strict';
-      const STORAGE_KEY = 'habiba_handmade_studio_v5';
+      const STORAGE_KEY = 'habiba_handmade_studio_v6';
       const DEVICE_ID_KEY = 'habiba_device_token_v1';
       const FIREBASE_DB_URL = 'https://habiba-handmade-default-rtdb.firebaseio.com';
 
@@ -505,7 +510,8 @@
       const DEFAULT_STATE = {
         password: '3/4/2006',
         primaryAdminToken: '',
-        allowExtraAdminAdd: false,
+        secondaryAdminToken: '',
+        pendingExtraAdminSlot: false,
         settings: {
           whatsapp: '201000000000',
           heroTitle: 'قطع معمولة على مهلك، عشانك',
@@ -543,7 +549,8 @@
         return {
           password: parsed.password || DEFAULT_STATE.password,
           primaryAdminToken: typeof parsed.primaryAdminToken === 'string' ? parsed.primaryAdminToken : '',
-          allowExtraAdminAdd: Boolean(parsed.allowExtraAdminAdd),
+          secondaryAdminToken: typeof parsed.secondaryAdminToken === 'string' ? parsed.secondaryAdminToken : '',
+          pendingExtraAdminSlot: Boolean(parsed.pendingExtraAdminSlot),
           settings: { ...DEFAULT_STATE.settings, ...(parsed.settings || {}) },
           categories: rawCategories.filter(Boolean),
           products: rawProducts.filter(Boolean),
@@ -554,7 +561,8 @@
       function canCurrentDeviceAccessAdmin() {
         if (!appState.primaryAdminToken) return true;
         if (appState.primaryAdminToken === MY_DEVICE_TOKEN) return true;
-        if (appState.allowExtraAdminAdd) return true;
+        if (appState.secondaryAdminToken && appState.secondaryAdminToken === MY_DEVICE_TOKEN) return true;
+        if (appState.pendingExtraAdminSlot) return true;
         return false;
       }
 
@@ -570,32 +578,36 @@
           const AudioCtx = window.AudioContext || window.webkitAudioContext;
           if (!AudioCtx) return;
           const ctx = new AudioCtx();
-          const notes = [587.33, 880];
-          notes.forEach((freq, idx) => {
+          const pattern = [
+            { freq: 659.25, at: 0, dur: 0.16 },
+            { freq: 880.0, at: 0.18, dur: 0.18 },
+            { freq: 1046.5, at: 0.38, dur: 0.28 },
+          ];
+          pattern.forEach((n) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.value = freq;
-            gain.gain.setValueAtTime(0.001, ctx.currentTime + idx * 0.14);
-            gain.gain.exponentialRampToValueAtTime(0.14, ctx.currentTime + idx * 0.14 + 0.03);
-            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.14 + 0.35);
+            osc.type = 'triangle';
+            osc.frequency.value = n.freq;
+            gain.gain.setValueAtTime(0.001, ctx.currentTime + n.at);
+            gain.gain.exponentialRampToValueAtTime(0.18, ctx.currentTime + n.at + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + n.at + n.dur);
             osc.connect(gain);
             gain.connect(ctx.destination);
-            osc.start(ctx.currentTime + idx * 0.14);
-            osc.stop(ctx.currentTime + idx * 0.14 + 0.36);
+            osc.start(ctx.currentTime + n.at);
+            osc.stop(ctx.currentTime + n.at + n.dur + 0.02);
           });
         } catch (_) {}
       }
 
       function triggerNewOrderAlert(orderObj) {
         playOrderNotificationSound();
-        showToast(`🔔 طلب جديد (${orderObj.orderCode}) من ${orderObj.customerName} — ${orderObj.product}`);
-        if ('Notification' in window && Notification.permission === 'granted') {
-          try {
-            new Notification('طلب جديد في Habiba Handmade', {
-              body: `${orderObj.customerName} طلب: ${orderObj.product} (${orderObj.orderCode})`,
-            });
-          } catch (_) {}
+        const msg = `🔔 طلب جديد (${orderObj.orderCode}) من ${orderObj.customerName} — ${orderObj.product}`;
+        showToast(msg);
+        const banner = document.getElementById('live-order-banner');
+        const bannerText = document.getElementById('live-order-banner-text');
+        if (banner && bannerText) {
+          bannerText.textContent = msg;
+          banner.classList.remove('hidden');
         }
       }
 
@@ -679,7 +691,7 @@
         el.className = 'pointer-events-auto rounded-2xl bg-[#4a2532] text-[#fbf7f4] border border-[#e8b4bc]/40 px-4 py-3 text-xs font-extrabold shadow-xl transition-all duration-300';
         el.textContent = msg;
         container.appendChild(el);
-        setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; setTimeout(() => el.remove(), 280); }, 3400);
+        setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateY(8px)'; setTimeout(() => el.remove(), 280); }, 3600);
       }
 
       function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -1029,22 +1041,31 @@
       }
 
       function renderAdminMembers() {
-        const toggleBtn = document.getElementById('toggle-allow-extra-admin-btn');
+        const slotBtn = document.getElementById('open-single-extra-slot-btn');
         const summaryEl = document.getElementById('admin-status-summary');
-        if (toggleBtn) {
-          toggleBtn.textContent = appState.allowExtraAdminAdd
-            ? 'إضافة شخص آخر: مفتوح (يقدر يدخل بالباسورد) — اضغط للإغلاق'
-            : '+ إضافة شخص آخر (يقدر يدخل بالباسورد)';
+        const hasSecondary = Boolean(appState.secondaryAdminToken);
+
+        if (slotBtn) {
+          if (appState.pendingExtraAdminSlot) {
+            slotBtn.textContent = '⏳ بانتظار دخول الشخص التاني (هيقفل تلقائياً أول ما يدخل)';
+          } else if (hasSecondary) {
+            slotBtn.textContent = '+ إضافة شخص (تم إضافته — اضغط لإتاحة دخول شخص جديد)';
+          } else {
+            slotBtn.textContent = '+ إضافة شخص (يقفل تلقائياً بعد دخوله)';
+          }
         }
+
         if (summaryEl) {
-          const isPrimaryMe = appState.primaryAdminToken === MY_DEVICE_TOKEN;
-          const primaryText = appState.primaryAdminToken
-            ? (isPrimaryMe ? 'الأدمن الأساسي: مثبت على هذا الجهاز ✓' : 'الأدمن الأساسي: مثبت على جهاز آخر')
-            : 'الأدمن الأساسي: لم يتم تثبيته بعد';
-          const extraText = appState.allowExtraAdminAdd
-            ? 'الدخول لشخص إضافي: مسموح حالياً بأي جهاز يكتب الباسورد'
-            : 'الدخول لشخص إضافي: مقفول';
-          summaryEl.textContent = `${primaryText} • ${extraText}`;
+          const line1 = appState.primaryAdminToken
+            ? (appState.primaryAdminToken === MY_DEVICE_TOKEN ? '• الأدمن الأول: هذا الجهاز ✓' : '• الأدمن الأول: مثبت على جهاز آخر')
+            : '• الأدمن الأول: لم يتم تثبيته بعد';
+          const line2 = hasSecondary
+            ? (appState.secondaryAdminToken === MY_DEVICE_TOKEN ? '• الأدمن التاني: هذا الجهاز ✓' : '• الأدمن التاني: مضاف ومثبت (المجموع اتنين بس)')
+            : '• الأدمن التاني: غير مضاف بعد';
+          const line3 = appState.pendingExtraAdminSlot
+            ? '• حالة الإضافة: مفتوحة لشخص واحد حالياً وستقفل تلقائياً فور دخوله'
+            : '• حالة الإضافة: مقفولة';
+          summaryEl.innerHTML = `<div>${line1}</div><div>${line2}</div><div>${line3}</div>`;
         }
       }
 
@@ -1064,7 +1085,7 @@
       async function openAdminStudio() {
         await pullStateFromFirebase();
         if (!canCurrentDeviceAccessAdmin()) {
-          showToast('لوحة الإدارة مقصورة على الأدمن الأساسي فقط');
+          showToast('لوحة الإدارة مقصورة على الأدمن المسموح له فقط');
           return;
         }
         document.getElementById('admin-studio-overlay').classList.remove('hidden');
@@ -1100,6 +1121,10 @@
       }
 
       function bindEventListeners() {
+        document.getElementById('dismiss-live-banner-btn').addEventListener('click', () => {
+          document.getElementById('live-order-banner').classList.add('hidden');
+        });
+
         document.getElementById('open-drawer-btn').addEventListener('click', openSideDrawer);
         document.getElementById('close-drawer-btn').addEventListener('click', closeSideDrawer);
         document.getElementById('side-drawer-backdrop').addEventListener('click', (e) => { if (e.target.id === 'side-drawer-backdrop') closeSideDrawer(); });
@@ -1183,8 +1208,16 @@
           const entered = document.getElementById('admin-password-input').value.trim();
           if (entered === String(appState.password || '3/4/2006')) {
             isAdminAuthenticated = true;
+            let stateChanged = false;
             if (!appState.primaryAdminToken) {
               appState.primaryAdminToken = MY_DEVICE_TOKEN;
+              stateChanged = true;
+            } else if (MY_DEVICE_TOKEN !== appState.primaryAdminToken && appState.pendingExtraAdminSlot) {
+              appState.secondaryAdminToken = MY_DEVICE_TOKEN;
+              appState.pendingExtraAdminSlot = false;
+              stateChanged = true;
+            }
+            if (stateChanged) {
               saveState();
             }
             document.getElementById('admin-login-error').classList.add('hidden');
@@ -1196,17 +1229,9 @@
           }
         });
 
-        document.getElementById('enable-browser-notif-btn').addEventListener('click', async () => {
-          if (!('Notification' in window)) {
-            showToast('المتصفح لا يدعم إشعارات النظام، التنبيه الداخلي والصوتي شغال');
-            return;
-          }
-          const perm = await Notification.requestPermission();
-          if (perm === 'granted') {
-            showToast('تم تفعيل إشعارات الطلبات الجديدة 🔔');
-          } else {
-            showToast('تم تفعيل التنبيه الداخلي والصوتي للطلبات الجديدة');
-          }
+        document.getElementById('test-alert-sound-btn').addEventListener('click', () => {
+          playOrderNotificationSound();
+          showToast('🔔 تجربة صوت التنبيه شغالة');
         });
 
         document.querySelectorAll('.admin-tab').forEach((tabBtn) => {
@@ -1388,11 +1413,11 @@
           showToast('تم تثبيت جهازك كأدمن أساسي ✓');
         });
 
-        document.getElementById('toggle-allow-extra-admin-btn').addEventListener('click', () => {
-          appState.allowExtraAdminAdd = !appState.allowExtraAdminAdd;
+        document.getElementById('open-single-extra-slot-btn').addEventListener('click', () => {
+          appState.pendingExtraAdminSlot = true;
           saveState();
           renderAdminMembers();
-          showToast(appState.allowExtraAdminAdd ? 'تم فتح الدخول لشخص إضافي بالباسورد ✓' : 'تم قفل الدخول لغير الأدمن الأساسي');
+          showToast('تم فتح إضافة شخص واحد — هيقفل تلقائياً أول ما يدخل ✓');
         });
 
         document.getElementById('download-site-html-btn').addEventListener('click', () => {
@@ -1414,7 +1439,7 @@
       pullStateFromFirebase();
       setInterval(() => {
         pullStateFromFirebase();
-      }, 5000);
+      }, 3000);
     })();
   </script>
 </body>
